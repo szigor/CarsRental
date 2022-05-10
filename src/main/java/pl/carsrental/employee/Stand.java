@@ -1,6 +1,6 @@
 package pl.carsrental.employee;
 
 public enum Stand {
-    PRACOWNIK,
+    EMPLOYEER,
     MANAGER
 }

@@ -1,23 +1,17 @@
 package pl.carsrental.cars;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import pl.carsrental.branch.Branch;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Long id;
     @NotBlank
     private String make;
     @NotBlank
@@ -34,5 +28,7 @@ public class Car {
     private Status status;
     @NotBlank
     private double pricePerDay;
+    @ManyToOne
+    private Branch branch;
 
 }
