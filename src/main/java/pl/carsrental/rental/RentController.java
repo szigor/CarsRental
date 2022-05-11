@@ -1,14 +1,12 @@
 package pl.carsrental.rental;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "wypo")
+@RequestMapping(path = "/wypo")
 public class RentController {
 
     private final RentService rentService;
@@ -21,5 +19,10 @@ public class RentController {
     @GetMapping
     public List<Rental> getRentals() {
         return rentService.getRentals();
+    }
+
+    @DeleteMapping(path = "{rentId}")
+    public void deleteRent(@PathVariable("rentId") Long rentId) {
+        rentService.deleteRent(rentId);
     }
 }

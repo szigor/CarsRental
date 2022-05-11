@@ -18,4 +18,12 @@ public class RentService {
     public List<Rental> getRentals() {
         return rentRepository.findAll();
     }
+
+    public void deleteRent(Long rentId) {
+        boolean exists = rentRepository.existsById(rentId);
+        if (!exists) {
+            throw new IllegalStateException("rent with id " + rentId + " does not exists");
+        }
+        rentRepository.deleteById(rentId);
+    }
 }
