@@ -1,5 +1,7 @@
 package pl.carsrental.rental;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import pl.carsrental.branch.Branch;
@@ -11,8 +13,8 @@ import java.util.List;
 
 @Builder
 @Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
-@Table(name = "rental")
 public class Rental {
 
     @SuppressWarnings("unused") //hibernate tego potrzebuje
@@ -39,15 +41,4 @@ public class Rental {
     @NotEmpty
     private static List<Branch> branchList;
 
-
-    @Override
-    public String toString() {
-        return "Rental{" +
-                "name='" + name + '\'' +
-                ", webDomain='" + webDomain + '\'' +
-                ", email='" + email + '\'' +
-                ", owner='" + owner + '\'' +
-                ", branchList=" + branchList +
-                '}';
-    }
 }

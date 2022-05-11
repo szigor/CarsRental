@@ -2,11 +2,7 @@ package pl.carsrental;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import pl.carsrental.branch.Branch;
-import pl.carsrental.cars.Car;
 import pl.carsrental.rental.Rental;
-
-import java.util.List;
 
 @SpringBootApplication
 public class CarsrentalApplication {

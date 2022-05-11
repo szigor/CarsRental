@@ -20,20 +20,10 @@ public class Branch {
     private String adress;
     @OneToMany(mappedBy = "branch")
     private List<Employee> employeeList;
-    @OneToMany(mappedBy = "car")
+    @OneToMany
     private List<Car> carsList;
     @NotBlank
     @OneToOne
     private Employee manager;
 
-
-    @Override
-    public String toString() {
-        return "Branch{" +
-                "adress='" + adress + '\'' +
-                ", employeeList=" + employeeList +
-                ", carsList=" + carsList +
-                ", manager=" + manager +
-                '}';
-    }
 }
