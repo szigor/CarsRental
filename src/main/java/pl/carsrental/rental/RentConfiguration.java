@@ -6,11 +6,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RentConfiguration {
 
-    CommandLineRunner commandLineRunner(RentRepository rentRepository) {
-        return args -> {
-            Rental rental1 = Rental.builder()
-                    .
-        }
-    }
+//    CommandLineRunner commandLineRunner(RentRepository rentRepository) {
+//        return args -> {
+//            Rental rental1 = Rental.builder()
+//        }
+//    }
 
 }
