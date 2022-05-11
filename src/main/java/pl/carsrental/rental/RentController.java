@@ -21,8 +21,13 @@ public class RentController {
         return rentService.getRentals();
     }
 
+    @PostMapping
+    public void addRental(@RequestBody Rental rental) {
+        rentService.addRental(rental);
+    }
+
     @DeleteMapping(path = "{rentId}")
-    public void deleteRent(@PathVariable("rentId") Long rentId) {
-        rentService.deleteRent(rentId);
+    public void deleteRental(@PathVariable("rentId") Long rentId) {
+        rentService.deleteRental(rentId);
     }
 }
