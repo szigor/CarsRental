@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 import pl.carsrental.branch.Branch;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
+@Component
 @Builder
 @Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
