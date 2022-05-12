@@ -1,20 +1,23 @@
 package pl.carsrental.branch;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import pl.carsrental.cars.Car;
 import pl.carsrental.employee.Employee;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
 
+@Builder
 @Data
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class Branch {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String adress;
@@ -22,8 +25,11 @@ public class Branch {
     private List<Employee> employeeList;
     @OneToMany
     private List<Car> carsList;
-    @NotBlank
+//    @NotBlank
     @OneToOne
     private Employee manager;
 
+    @SuppressWarnings("unused") //hibernate tego potrzebuje
+    protected Branch() {
+    }
 }

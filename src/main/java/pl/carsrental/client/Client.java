@@ -1,5 +1,8 @@
 package pl.carsrental.client;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -9,10 +12,12 @@ import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 
 @Data
+@Builder
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class Client {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
     private String firstName;
@@ -21,4 +26,8 @@ public class Client {
     private String email;
     @NotBlank
     private String adress;
+
+    @SuppressWarnings(value = "unused")
+    protected Client() {
+    }
 }

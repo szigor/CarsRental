@@ -24,7 +24,7 @@ public class Rental {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotBlank
@@ -40,7 +40,7 @@ public class Rental {
 
 //    private String urlLogotype;
 
-    @NotEmpty
-    private static List<Branch> branchList;
+    @OneToMany
+    private List<Branch> branchList;
 
 }
