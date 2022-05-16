@@ -23,16 +23,16 @@ public class RentService {
         return rentRepository.findAll();
     }
 
+    public void addRental(Rental rental) {
+        rentRepository.save(rental);
+        log.info("Added " + rental);
+    }
+
     public void deleteRental(Long rentId) {
         boolean exists = rentRepository.existsById(rentId);
         if (!exists) {
             throw new IllegalStateException("rent with id " + rentId + " does not exists");
         }
         rentRepository.deleteById(rentId);
-    }
-
-    public void addRental(Rental rental) {
-        rentRepository.save(rental);
-        log.info("Added " + rental);
     }
 }

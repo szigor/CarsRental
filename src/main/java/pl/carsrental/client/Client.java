@@ -16,14 +16,19 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 public class Client {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @NotBlank
     private String firstName;
+
     @NotBlank
     private String surname;
+
     private String email;
+
     @NotBlank
     private String adress;
 

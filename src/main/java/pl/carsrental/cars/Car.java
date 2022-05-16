@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import pl.carsrental.branch.Branch;
+import pl.carsrental.reservation.Reservation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -45,6 +46,8 @@ public class Car {
     private double pricePerDay;
     @ManyToOne
     private Branch branch;
+    @ManyToOne
+    private Reservation reservation;
 
     @SuppressWarnings(value = "unused")
     protected Car() {

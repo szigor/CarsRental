@@ -40,7 +40,7 @@ public class Rental {
 
 //    private String urlLogotype;
 
-    @OneToMany
+    @OneToMany(mappedBy = "rental")
     private List<Branch> branchList;
 
 }
