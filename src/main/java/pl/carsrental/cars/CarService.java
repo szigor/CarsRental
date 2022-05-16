@@ -27,7 +27,7 @@ public class CarService {
 
     public Optional<Car> getCar(long carID) {
         try {
-            return Optional.of(carRepository.getById(carID));
+            return carRepository.findById(carID);
         } catch(EntityNotFoundException e) {
             return Optional.empty();
         }

@@ -16,22 +16,32 @@ import javax.validation.constraints.NotBlank;
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
     @NotBlank
+
     private String make;
 //    @NotBlank
+
     private String model;
-//    @NotBlank
+
+    //    @NotBlank
     private BodyType bodyType;
-//    @NotBlank
+
+    //    @NotBlank
     private int firstRegistration;
-//    @NotBlank
+
+    //    @NotBlank
     private Colour colour;
-//    @NotBlank
+
+    //    @NotBlank
     private double mileage;
-//    @NotBlank
+
+    //    @NotBlank
+    @Enumerated(EnumType.STRING)
     private Status status;
-//    @NotBlank
+
+    //    @NotBlank
     private double pricePerDay;
     @ManyToOne
     private Branch branch;

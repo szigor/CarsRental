@@ -6,6 +6,7 @@ import pl.carsrental.branch.Branch;
 import pl.carsrental.branch.BranchRepository;
 import pl.carsrental.cars.Car;
 import pl.carsrental.cars.CarRepository;
+import pl.carsrental.cars.Status;
 import pl.carsrental.client.Client;
 import pl.carsrental.client.ClientRepository;
 import pl.carsrental.employee.Employee;
@@ -38,6 +39,7 @@ public class Configuration {
                     .make("Audi")
                     .model("A8")
                     .mileage(182.023)
+                    .status(Status.AVAILABLE)
                     .build();
 
             Car car2 = Car.builder()
@@ -46,6 +48,7 @@ public class Configuration {
                     .mileage(123.721)
                     .firstRegistration(2008)
                     .pricePerDay(450)
+                    .status(Status.UNAVAILABLE)
                     .build();
 
             Employee employee1 = Employee.builder()
@@ -68,14 +71,22 @@ public class Configuration {
                     .adress("Gdansk")
                     .build();
 
+            branchRepository.saveAll(
+                    List.of(
+                            branchWwa,
+                            branchGd
+                    )
+            );
+
+
             Rental rental2 = Rental.builder()
                     .email("wypo2@gmail.com")
                     .name("Wypozyczalnia aut2")
                     .owner("Jan Kowalski")
                     .webDomain("www.wypo2.com")
-//                    .branchList(
-//                            List.of(branchWwa)
-//                    )
+                    .branchList(
+                            List.of(branchGd)
+                    )
                     .build();
 
             Rental rental1 = Rental.builder()
@@ -83,11 +94,9 @@ public class Configuration {
                     .name("Wypozyczalnia aut")
                     .owner("Jan nowak")
                     .webDomain("www.wypo1.com")
-//                    .branchList(List.of(
-//                            Branch.builder()
-//                                    .adress("Warszawa")
-//                                    .build()
-//                    ))
+                    .branchList(List.of(
+                            branchWwa
+                    ))
                     .build();
 
             rentRepository.saveAll(
@@ -97,12 +106,6 @@ public class Configuration {
                     )
             );
 
-            branchRepository.saveAll(
-                    List.of(
-                            branchWwa,
-                            branchGd
-                    )
-            );
 
             employeeRepository.saveAll(
                     List.of(
