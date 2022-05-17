@@ -2,22 +2,18 @@ package pl.carsrental.rental;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Singular;
 import org.springframework.stereotype.Component;
 import pl.carsrental.branch.Branch;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Component
-@Builder
 @Data
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id")
@@ -45,6 +41,16 @@ public class Rental {
 //    private String urlLogotype;
 
     @OneToMany(mappedBy = "rental")
-    private List<Branch> branchList;
+    private List<Branch> branches;
 
+    @Builder
+    private Rental(Long id, @NotBlank String name, String webDomain, @NotBlank String email, @NotBlank String owner, @Singular List<Branch> branches) {
+        this.id = id;
+        this.name = name;
+        this.webDomain = webDomain;
+        this.email = email;
+        this.owner = owner;
+        this.branches = branches;
+        branches.forEach(branch -> {branch.setRental(this);});
+    }
 }

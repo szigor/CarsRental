@@ -123,7 +123,7 @@ public class InitialDataSeeder implements Runnable{
                 .name("Wypozyczalnia aut")
                 .owner("Jan nowak")
                 .webDomain("www.wypo1.com")
-                .branchList(
+                .branches(
                         List.of(
                                 branchWwa,
                                 branchWro
@@ -136,7 +136,7 @@ public class InitialDataSeeder implements Runnable{
                 .name("Wypozyczalnia aut2")
                 .owner("Jan Kowalski")
                 .webDomain("www.wypo2.com")
-                .branchList(
+                .branches(
                         List.of(
                                 branchGd
                         )
