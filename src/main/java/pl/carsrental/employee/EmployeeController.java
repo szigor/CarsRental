@@ -3,6 +3,7 @@ package pl.carsrental.employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.PostUpdate;
 import java.util.List;
 
 @RestController
@@ -24,6 +25,11 @@ public class EmployeeController {
     @PostMapping
     public void addEmployee(@RequestBody Employee employee) {
         employeeService.addEmployee(employee);
+    }
+
+    @PostMapping(path = "/change/{employeeId}")
+    public void changeEmployeeStanding(@PathVariable("employeeId") Long employeeId) {
+        employeeService.employeeChangeStanding(employeeId);
     }
 
     @DeleteMapping(path = "{employeeId}")

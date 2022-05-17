@@ -39,10 +39,14 @@ public class CarService {
     }
 
     public void deleteCarById(Long carId) {
+        isCarExist(carId);
+        carRepository.deleteById(carId);
+    }
+
+    private void isCarExist(Long carId) {
         boolean exists = carRepository.existsById(carId);
         if (!exists) {
             throw new IllegalStateException("car with id " + carId + " does not exists");
         }
-        carRepository.deleteById(carId);
     }
 }

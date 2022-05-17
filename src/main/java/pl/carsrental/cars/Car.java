@@ -1,5 +1,7 @@
 package pl.carsrental.cars;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,43 +11,55 @@ import pl.carsrental.reservation.Reservation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
+
     @NotBlank
-
     private String make;
-//    @NotBlank
 
+    @NotBlank
     private String model;
 
-    //    @NotBlank
+    private Double capacity;
+
+    @NotNull
+    private Integer firstRegistration;
+
+    @NotNull
+    private Double mileage;
+
+    @NotNull
+    private Double pricePerDay;
+
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private BodyType bodyType;
 
-    //    @NotBlank
-    private int firstRegistration;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private Fuel fuel;
 
-    //    @NotBlank
+    @NotNull
+    @Enumerated(EnumType.STRING)
     private Colour colour;
 
-    //    @NotBlank
-    private double mileage;
-
-    //    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    //    @NotBlank
-    private double pricePerDay;
     @ManyToOne
     private Branch branch;
+
     @ManyToOne
     private Reservation reservation;
 

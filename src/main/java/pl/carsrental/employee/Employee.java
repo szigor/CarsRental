@@ -1,5 +1,7 @@
 package pl.carsrental.employee;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,6 +17,8 @@ import java.util.List;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Employee {
 
     @Id
@@ -28,13 +32,15 @@ public class Employee {
     private String surname;
 
     //    @NotBlank
+    @Enumerated(EnumType.STRING)
     private Stand standing;
 
 //    @ManyToOne(optional = false)
     @ManyToOne
     private Branch branch;
 
-    @OneToMany(mappedBy = "employee")
+//    @OneToMany(mappedBy = "employee")
+    @OneToMany
     private List<Hire> hireList;
 
     @SuppressWarnings("unused") //hibernate tego potrzebuje

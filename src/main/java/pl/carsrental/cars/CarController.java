@@ -1,33 +1,36 @@
 package pl.carsrental.cars;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static org.springframework.http.ResponseEntity.notFound;
 
 @RestController
-@RequestMapping(path = "/auta")
+//@RequestMapping(path = "/auta")
+@RequiredArgsConstructor
 public class CarController {
 
     private final CarService carService;
 
-    @Autowired
-    public CarController(CarService carService) {
-        this.carService = carService;
+    @GetMapping(path = "/auta")
+    public String getCars(ModelMap modelMap) {
+        modelMap.addAttribute("cars", carService.getCars());
+        return "home";
     }
 
-    @GetMapping
-    public List<Car> getCars() {
+    @GetMapping(path = "/autaa")
+    public List<Car> getCarss() {
         return carService.getCars();
     }
 
-
-    @GetMapping (path = "status/{carId}")
-    public ResponseEntity<Car> getCar(@PathVariable("carId") Long carId) {
-        return carService.getCar(carId).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    @GetMapping (path = "/auta/{carId}")
+    public String getCar(@PathVariable("carId") Long carId, ModelMap modelMap) {
+        modelMap.addAttribute("car", carService.getCar(carId).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()));
+        return "car-details";
     }
 
     @PostMapping
@@ -35,7 +38,7 @@ public class CarController {
         carService.addCar(car);
     }
 
-    @DeleteMapping(path = "{carId}")
+    @DeleteMapping(path = "delete/{carId}")
     public void deleteCar(@PathVariable("carId") Long carId) {
         carService.deleteCarById(carId);
     }

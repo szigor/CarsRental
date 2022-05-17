@@ -33,7 +33,8 @@ public class Reservation {
     @OneToOne
     private Client client;
 
-    @OneToMany(mappedBy = "reservation")
+//    @OneToMany(mappedBy = "reservation")
+    @OneToMany
     private List<Car> carsOnReservation;
 
     private LocalDateTime fromDate;

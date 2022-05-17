@@ -29,12 +29,36 @@ public class EmployeeService {
     }
 
     public void deleteEmployeeById(Long employeeId) {
+        employeeExists(employeeId);
+        employeeRepository.deleteById(employeeId);
+    }
+
+    public void employeeChangeStanding(Long employeeId) {
+
+        employeeExists(employeeId);
+        Employee employee = employeeRepository.getById(employeeId);
+        Stand employeeStanding = employee.getStanding();
+
+        if (employeeStanding == Stand.EMPLOYEE) {
+
+            employee.setStanding(Stand.MANAGER);
+            employeeRepository.save(employee);
+            log.info("Employee with id: " + employee.getId() + " promoted");
+
+        } else {
+
+            employee.setStanding(Stand.EMPLOYEE);
+            employeeRepository.save(employee);
+            log.info("Employee with id: " + employee.getId() + " demoted");
+
+        }
+    }
+
+    private void employeeExists(Long employeeId) {
         boolean exists = employeeRepository.existsById(employeeId);
         if (!exists) {
             throw new IllegalStateException("employee with id " + employeeId + " does not exists");
         }
-        employeeRepository.deleteById(employeeId);
     }
-
 
 }
