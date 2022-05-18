@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>OUR VEHICLES</title>
+    <title>Our vehicles</title>
 </head>
 <body>
-<p th:each="car : ${cars}"></p>
+<h1 th:align="center">OUR VEHICLES</h1>
+<style>
+    th { border: 1px solid gray; }
+</style>
+<table class="table" th:align="center" th:width="1000">
+    <thead>
+    <tr th:align="center">
+        <th>Make</th>
+        <th>Model</th>
+        <th>First registration</th>
+        <th>Horse power</th>
+        <th>Bodytype</th>
+        <th>Price per Day (zł)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:align="center" th:each="car : ${cars}">
+        <td>
+            <a th:text="${car.make}" th:href="@{'/auta/' + ${car.id}}"/>
+        </td>
+        <td th:text="${car.model}"/>
+        <td th:text="${car.firstRegistration}"/>
+        <td th:text="${car.horsePower}"/>
+        <td th:text="${car.bodyType}"/>
+        <td th:text="${car.pricePerDay}" th:bgcolor="red"/>
+    </tr>
+    </tbody>
+</table>
 
 </body>
 </html>

@@ -2,6 +2,7 @@ package pl.carsrental.cars;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -22,15 +23,12 @@ public class CarService {
     }
 
     public List<Car> getCars() {
-        return carRepository.findAll();
+        return carRepository.findAll(Sort.by("pricePerDay").ascending());
     }
 
-    public Optional<Car> getCar(long carID) {
-        try {
-            return carRepository.findById(carID);
-        } catch(EntityNotFoundException e) {
-            return Optional.empty();
-        }
+    public Car getCar(Long carId) {
+        isCarExist(carId);
+        return carRepository.getById(carId);
     }
 
     public void addCar(Car car) {

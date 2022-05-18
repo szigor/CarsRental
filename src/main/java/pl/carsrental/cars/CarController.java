@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
-@RestController
+//@RestController
+@Controller
 //@RequestMapping(path = "/auta")
 @RequiredArgsConstructor
 public class CarController {
@@ -22,14 +23,9 @@ public class CarController {
         return "home";
     }
 
-    @GetMapping(path = "/autaa")
-    public List<Car> getCarss() {
-        return carService.getCars();
-    }
-
     @GetMapping (path = "/auta/{carId}")
     public String getCar(@PathVariable("carId") Long carId, ModelMap modelMap) {
-        modelMap.addAttribute("car", carService.getCar(carId).map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build()));
+        modelMap.addAttribute("car", carService.getCar(carId));
         return "car-details";
     }
 

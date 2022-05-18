@@ -30,6 +30,8 @@ public class Car {
     @NotBlank
     private String model;
 
+    private Integer horsePower;
+
     private Double capacity;
 
     @NotNull

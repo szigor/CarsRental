@@ -1,10 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Auto</title>
+    <title>Car details</title>
 </head>
-<body>
-<h1>Auta</h1>
+<body th:align="center">
+<style>
+    td { border: 1px solid gray; }
+    th { border: 1px solid gray; }
+</style>
+<table class="table" th:align="center" th:height="300" th:width="300" >
+    <tr>
+        <th>Make</th>
+        <td th:text="${car.make}"/>
+    </tr>
+    <tr>
+        <th>Model</th>
+        <td th:text="${car.model}"/>
+    </tr>
+    <tr>
+        <th>First<br>Registration</th>
+        <td th:text="${car.firstRegistration}"/>
+    </tr>
+    <tr>
+        <th>Horse power</th>
+        <td th:text="${car.horsePower}"/>
+    </tr>
+    <tr>
+        <th>Capacity</th>
+        <td th:text="${car.capacity}"/>
+    </tr>
+    <tr>
+        <th>Mileage</th>
+        <td th:text="${car.mileage}"/>
+    </tr>
+    <tr>
+        <th>Body Type</th>
+        <td th:text="${car.bodyType}"/>
+    </tr>
+    <tr>
+        <th>Fuel</th>
+        <td th:text="${car.fuel}"/>
+    </tr>
+    <tr>
+        <th>Colour</th>
+        <td th:text="${car.colour}"/>
+    </tr>
+    <tr>
+        <th>Status</th>
+        <td th:text="${car.status}"/>
+    </tr>
+    <tr>
+        <th>Price per day</th>
+        <td th:text="${car.pricePerDay}" th:bgcolor="red"/>
+    </tr>
+</table>
 </body>
 </html>
