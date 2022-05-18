@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Branches</title>
+</head>
+<body>
+<style>
+    td { border: 1px solid gray; }
+    th { border: 1px solid gray; }
+</style>
+<h1 th:align="center">
+    <a th:text="${branches.get(0).rental.name}"/>
+</h1>
+<table class="table" th:align="center" th:height="100" th:width="300">
+    <thead>
+    <tr th:align="center">
+        <td>Branch place</td>
+        <td>
+            <a th:text="Cars" th:href="@{'auta'}"/>
+            <a>in branch</a>
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:align="center" th:each="branch : ${branches}">
+        <th>
+            <a th:text="${branch.address}"/>
+        </th>
+        <th>
+            <ul th:each="car : ${branch.cars}">
+                <li>
+                    <a th:text="${car.make}" th:href="@{'/auta/' + ${car.id}}"/>
+                    <a th:text="${car.model}"/>
+                </li>
+            </ul>
+        </th>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

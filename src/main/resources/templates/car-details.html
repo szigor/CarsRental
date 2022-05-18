@@ -51,8 +51,21 @@
         <td th:text="${car.status}"/>
     </tr>
     <tr>
+        <th>Branch</th>
+        <td>
+            <a th:text="${car.branch.address}" th:href="@{'/branches'}"/>
+        </td>
+    </tr>
+    <tr>
         <th>Price per day</th>
         <td th:text="${car.pricePerDay}" th:bgcolor="red"/>
+    </tr>
+    <tr>
+        <th th:colspan="2">
+            <a th:href="@{'/reservation/create'}">
+                <button>Book now!</button>
+            </a>
+        </th>
     </tr>
 </table>
 </body>

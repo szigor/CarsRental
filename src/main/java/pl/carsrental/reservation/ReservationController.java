@@ -1,12 +1,16 @@
 package pl.carsrental.reservation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping(path = "/rezerwacje")
+@Slf4j
+@Controller
+@RequestMapping(path = "/reservation")
 public class ReservationController {
 
     private final ReservationService reservationService;
@@ -21,9 +25,18 @@ public class ReservationController {
         return reservationService.getReservations();
     }
 
-    @PostMapping
-    public void addReservation(@RequestBody Reservation reservation) {
+    @GetMapping(path = "/create")
+    public String showCreateReservationForm(ModelMap modelMap) {
+        modelMap.addAttribute("emptyReservation", new Reservation());
+        return "reservation-create";
+    }
+
+    @PostMapping(path = "/save")
+    public String handleNewBook(@ModelAttribute("emptyReservation") Reservation reservation) {
+        log.info("Handle new Reservation: " + reservation);
+
         reservationService.addReservation(reservation);
+        return "redirect:/branches";
     }
 
     @DeleteMapping(path = "{reservationId}")

@@ -2,6 +2,7 @@ package pl.carsrental.branch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.carsrental.employee.Employee;
 

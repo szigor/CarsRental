@@ -62,7 +62,7 @@ public class Car {
     @ManyToOne
     private Branch branch;
 
-    @ManyToOne
+    @OneToOne
     private Reservation reservation;
 
     @SuppressWarnings(value = "unused")

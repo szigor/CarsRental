@@ -1,9 +1,12 @@
 package pl.carsrental.reservation;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import pl.carsrental.branch.Branch;
 import pl.carsrental.cars.Car;
 import pl.carsrental.client.Client;
@@ -12,17 +15,15 @@ import pl.carsrental.hire.Hire;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Data
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 public class Reservation {
-
-    @SuppressWarnings("unused") //hibernate tego potrzebuje
-    protected Reservation() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,12 +35,14 @@ public class Reservation {
     private Client client;
 
 //    @OneToMany(mappedBy = "reservation")
-    @OneToMany
-    private List<Car> carsOnReservation;
+    @OneToOne
+    private Car carOnReservation;
 
-    private LocalDateTime fromDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date fromDate;
 
-    private LocalDateTime toDate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date toDate;
 
     @ManyToOne
     private Branch branchStart;
@@ -51,5 +54,9 @@ public class Reservation {
 
     @OneToOne
     private Hire hire;
+
+    @SuppressWarnings("unused") //hibernate tego potrzebuje
+    protected Reservation() {
+    }
 
 }

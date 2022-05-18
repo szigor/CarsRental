@@ -140,11 +140,13 @@ public class InitialDataSeeder implements Runnable{
 
         Branch branchGd = branchRepository.save(Branch.builder()
                 .address("Gdansk")
+                .cars(List.of(car3, car4))
                 .employee(manager)
                 .build());
 
         Branch branchWro = branchRepository.save(Branch.builder()
                 .address("Wroclaw")
+                .cars(List.of(car5))
                 .build());
 
 
@@ -177,12 +179,12 @@ public class InitialDataSeeder implements Runnable{
         Reservation reservation1 = reservationRepository.save(Reservation.builder()
                 .branchStart(branchGd)
                 .branchEnd(branchWwa)
-                .carsOnReservation(List.of(car1))
+                .carOnReservation(car1)
                 .client(client1)
                 .reservationDate(LocalDateTime.now())
                 .price(BigDecimal.valueOf(349.99))
-                .fromDate(LocalDateTime.now().plusDays(1))
-                .toDate(LocalDateTime.now().plusDays(6))
+//                .fromDate(LocalDateTime.now().plusDays(1))
+//                .toDate(LocalDateTime.now().plusDays(6))
                 .build());
     }
 }

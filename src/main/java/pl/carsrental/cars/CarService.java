@@ -41,6 +41,12 @@ public class CarService {
         carRepository.deleteById(carId);
     }
 
+    public Boolean isAvailable(Long carId) {
+        isCarExist(carId);
+        Car car = carRepository.getById(carId);
+        return car.getStatus() == Status.AVAILABLE;
+    }
+
     private void isCarExist(Long carId) {
         boolean exists = carRepository.existsById(carId);
         if (!exists) {

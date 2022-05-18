@@ -1,24 +1,21 @@
 package pl.carsrental.branch;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
-@RestController
-@RequestMapping(path = "/oddzialy")
+@Controller
+@RequiredArgsConstructor
 public class BranchController {
 
     private final BranchService branchService;
 
-    @Autowired
-    public BranchController(BranchService branchService) {
-        this.branchService = branchService;
-    }
-
-    @GetMapping
-    public List<Branch> getBranch() {
-        return branchService.getBranches();
+    @GetMapping(path = "/branches")
+    public String getBranch(ModelMap modelMap) {
+        modelMap.addAttribute("branches", branchService.getBranches());
+        return "branch-list";
     }
 
     @PostMapping

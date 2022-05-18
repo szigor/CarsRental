@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+<body>
+<form method="post" th:action="@{/reservation/save}" th:object="${emptyReservation}">
+
+    <label>
+        From date:
+        <input type="date" th:field="*{fromDate}"/>
+    </label>
+
+    <label>
+        To date:
+        <input type="date" th:field="*{toDate}"/>
+    </label>
+
+    <label>
+        Car id:
+        <input type="text" th:field="*{carOnReservation.id}"/>
+    </label>
+
+    <button type="submit" class="btn btn-primary">Make reservation</button>
+
+</form>
+
+</body>
+</html>
