@@ -62,7 +62,8 @@ public class Car {
     @ManyToOne
     private Branch branch;
 
-    @OneToOne
+    @OneToOne(mappedBy = "carOnReservation")
+//    @OneToOne
     private Reservation reservation;
 
     @SuppressWarnings(value = "unused")

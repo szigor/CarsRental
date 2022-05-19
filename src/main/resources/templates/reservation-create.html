@@ -5,7 +5,51 @@
     <title>Reservation</title>
 </head>
 <body>
+<style>
+    .button {
+        background-color: white;
+        border: 2px solid #f44336;
+        color: black;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+    .button:hover {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
+<h1>Booking for:</h1>
+<h2>
+    <a th:object="${car}" th:text="${car.make}"/>
+    <a th:object="${car}" th:text="${car.model}"/>
+</h2>
 <form method="post" th:action="@{/reservation/save}" th:object="${emptyReservation}">
+
+    <label>
+        First name:
+        <input type="text" th:field="*{client.firstName}"/>
+    </label>
+
+    <label>
+        Surname:
+        <input type="text" th:field="*{client.surname}"/>
+    </label>
+
+    <label>
+        Address:
+        <input type="text" th:field="*{client.adress}"/>
+    </label>
+
+    <label>
+        E-mail:
+        <input type="text" th:field="*{client.email}"/>
+    </label>
 
     <label>
         From date:
@@ -17,12 +61,7 @@
         <input type="date" th:field="*{toDate}"/>
     </label>
 
-    <label>
-        Car id:
-        <input type="text" th:field="*{carOnReservation.id}"/>
-    </label>
-
-    <button type="submit" class="btn btn-primary">Make reservation</button>
+    <button type="submit" class="button">Book now!</button>
 
 </form>
 

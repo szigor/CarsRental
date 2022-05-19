@@ -31,10 +31,10 @@ public class Reservation {
 
     private LocalDateTime reservationDate;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private Client client;
 
-//    @OneToMany(mappedBy = "reservation")
+//    @OneToOne(mappedBy = "reservation")
     @OneToOne
     private Car carOnReservation;
 
