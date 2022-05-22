@@ -6,19 +6,26 @@
 </head>
 <body>
 <style>
-    td { border: 1px solid gray; }
-    th { border: 1px solid gray; }
+    td { border: 3px groove darkgreen; }
+    th { border: 3px groove darkgreen; }
 </style>
 <h1 th:align="center">
     <a th:text="${branches.get(0).rental.name}"/>
 </h1>
-<table class="table" th:align="center" th:height="100" th:width="300">
+<h2 th:align="center">
+    <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span>
+    <p>Witamy w naszej wypożyczalni samochodów!
+        Znajdą Państwo poniżej wykaz aut jakimi obecnie dysponujemy w naszych oddziałach.
+        Zachęcamy do skorzystania :)
+    </p>
+</h2>
+<table class="table" th:align="center" th:height="300" th:width="600">
     <thead>
     <tr th:align="center">
-        <td>Branch place</td>
+        <td>BRANCH PLACE</td>
         <td>
-            <a th:text="Cars" th:href="@{'auta'}"/>
-            <a>in branch</a>
+            <a th:text="CARS" th:href="@{'auta'}"/>
+            <a>IN BRANCH</a>
         </td>
     </tr>
     </thead>

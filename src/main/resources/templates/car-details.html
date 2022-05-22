@@ -6,8 +6,8 @@
 </head>
 <body th:align="center">
 <style>
-    td { border: 1px solid gray; }
-    th { border: 1px solid gray; }
+    td { border: 1px double black; }
+    th { border: 1px double black; }
     .button {
         display: inline-block;
         border-radius: 4px;
@@ -48,10 +48,10 @@
         right: 0;
     }
 </style>
-<table class="table" th:align="center" th:height="300" th:width="300" >
+<table class="table" th:align="center" th:height="400" th:width="400" th:bgcolor="MediumSeaGreen" >
     <tr>
         <th>Make</th>
-        <td th:text="${car.make}"/>
+        <td th:style="tomato" th:text="${car.make}"/>
     </tr>
     <tr>
         <th>Model</th>
@@ -97,7 +97,7 @@
     </tr>
     <tr>
         <th>Price per day</th>
-        <td th:text="${car.pricePerDay}" th:bgcolor="red"/>
+        <td th:text="${car.pricePerDay}" th:bgcolor="crimson"/>
     </tr>
     <tr>
         <th th:colspan="2">
