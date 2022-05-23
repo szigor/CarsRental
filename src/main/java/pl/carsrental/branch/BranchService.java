@@ -30,6 +30,16 @@ public class BranchService {
         log.info("Added " + branch);
     }
 
+    public Branch getBranchByAddress(String address) {
+        List<Branch> all = branchRepository.findAll();
+        for (Branch branch : all) {
+            if(branch.getAddress().equals(address)) {
+                return branch;
+            }
+        }
+        return null;
+    }
+
     public void deleteBranchById(Long branchId) {
         boolean exists = branchRepository.existsById(branchId);
         if (!exists) {

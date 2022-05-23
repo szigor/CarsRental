@@ -68,7 +68,7 @@ public class InitialDataSeeder implements Runnable{
                 .bodyType(BodyType.COUPE)
                 .fuel(Fuel.PETROL)
                 .colour(Colour.WHITE)
-                .status(Status.UNAVAILABLE)
+                .status(Status.AVAILABLE)
                 .build());
 
         Car car3 = carRepository.save(Car.builder()
@@ -82,7 +82,7 @@ public class InitialDataSeeder implements Runnable{
                 .bodyType(BodyType.SUV)
                 .fuel(Fuel.PETROL)
                 .colour(Colour.SILVER)
-                .status(Status.BORROWED)
+                .status(Status.AVAILABLE)
                 .build());
 
         Car car4 = carRepository.save(Car.builder()
@@ -109,7 +109,7 @@ public class InitialDataSeeder implements Runnable{
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.ELECTRIC)
                 .colour(Colour.RED)
-                .status(Status.AVAILABLE)
+                .status(Status.UNAVAILABLE)
                 .build());
 
 

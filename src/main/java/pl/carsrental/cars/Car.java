@@ -69,4 +69,15 @@ public class Car {
     @SuppressWarnings(value = "unused")
     protected Car() {
     }
+
+    @Override
+    public String toString() {
+        return "Car{" +
+                "id=" + id +
+                ", make='" + make + '\'' +
+                ", model='" + model + '\'' +
+                ", pricePerDay=" + pricePerDay +
+                ", status=" + status +
+                '}';
+    }
 }

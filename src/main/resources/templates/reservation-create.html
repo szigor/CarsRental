@@ -6,6 +6,16 @@
 </head>
 <body>
 <style>
+    h1 {
+        font-family: monospace;
+        font-size: 40px;
+    }
+    h2 {
+        font-family: monospace;
+        font-size: 30px;
+        color: darkred;
+        font-weight: bolder;
+    }
     .button {
         background-color: white;
         border: 2px solid #f44336;
@@ -19,49 +29,73 @@
         transition-duration: 0.4s;
         cursor: pointer;
     }
+
     .button:hover {
         background-color: #f44336;
         color: white;
     }
 </style>
-<h1>Booking for:</h1>
-<h2>
+<h1 th:align="center">Booking for:</h1>
+<h2 th:align="center">
     <a th:object="${car}" th:text="${car.make}"/>
     <a th:object="${car}" th:text="${car.model}"/>
 </h2>
 <form method="post" th:action="@{/reservation/save}" th:object="${emptyReservation}">
+    <div th:align="center">
 
-    <label>
-        First name:
-        <input type="text" th:field="*{client.firstName}"/>
-    </label>
+        <input name="carId" type="hidden" th:value="${car.getId()}"/>
 
-    <label>
-        Surname:
-        <input type="text" th:field="*{client.surname}"/>
-    </label>
+        <label>
+            First name:
+            <input type="text" th:field="*{client.firstName}"/>
+        </label>
 
-    <label>
-        Address:
-        <input type="text" th:field="*{client.adress}"/>
-    </label>
+        <label>
+            Surname:
+            <input type="text" th:field="*{client.surname}"/>
+        </label>
 
-    <label>
-        E-mail:
-        <input type="text" th:field="*{client.email}"/>
-    </label>
+        <label>
+            Address:
+            <input type="text" th:field="*{client.adress}"/>
+        </label>
 
-    <label>
-        From date:
-        <input type="date" th:field="*{fromDate}"/>
-    </label>
+        <label>
+            E-mail:
+            <input type="text" th:field="*{client.email}"/>
+        </label>
+    </div>
+    <div th:align="center">
+        <br>
+        <label>
+            From date:
+            <input type="date" th:field="*{fromDate}"/>
+        </label>
 
-    <label>
-        To date:
-        <input type="date" th:field="*{toDate}"/>
-    </label>
+        <label>
+            To date:
+            <input type="date" th:field="*{toDate}"/>
+        </label>
+    </div>
+    <div th:align="center">
+        <br>
+        <label>
+            <a th:align="center">Return place<br></a>
+            <select name="branchEnd" th:object="${branchEnd}" >
+                <option
+                        th:each="branch : ${branches}"
+                        th:text="${branch.getAddress()}"
+                        th:value="${branch.getId()}"
+                />
+            </select>
+<!--            <input type="text"/>-->
+        </label>
+    </div>
+    <div th:align="center">
+        <br>
+        <button type="submit" class="button">Book now!</button>
+    </div>
 
-    <button type="submit" class="button">Book now!</button>
 
 </form>
 

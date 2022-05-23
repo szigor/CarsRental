@@ -52,6 +52,14 @@ public class Branch {
     protected Branch() {
     }
 
+    @Override
+    public String toString() {
+        return "Branch{" +
+                "id=" + id +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
     @Builder
     private Branch(Long id, @NotBlank String address, @Singular List<Employee> employees, @Singular List<Car> cars, Rental rental) {
         this.id = id;
