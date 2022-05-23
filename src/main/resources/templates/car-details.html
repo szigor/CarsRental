@@ -47,8 +47,55 @@
         opacity: 1;
         right: 0;
     }
+
+    .button2
+    {background-color: #0078d0;
+        border: 0;
+        border-radius: 56px;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        outline: 0;
+        padding: 16px 21px;
+        position: relative;
+        text-align: center;
+        text-decoration: none;
+        transition: all .3s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .button2:before {
+        background-color: initial;
+        background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
+        border-radius: 125px;
+        content: "";
+        height: 50%;
+        left: 4%;
+        opacity: .5;
+        position: absolute;
+        top: 0;
+        transition: all .3s;
+        width: 92%;
+    }
+
+    .button2:hover {
+        box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
+        transform: scale(1.05);
+    }
+
+    @media (min-width: 768px) {
+        .button-71 {
+            padding: 16px 48px;
+        }
+    }
+
 </style>
-<table class="table" th:align="center" th:height="400" th:width="400" th:bgcolor="MediumSeaGreen" >
+<table class="table" th:align="center" th:height="400" th:width="400" th:bgcolor="GhostWhite" >
     <tr>
         <th>Make</th>
         <td th:text="${car.make}"/>
@@ -56,6 +103,15 @@
     <tr>
         <th>Model</th>
         <td th:text="${car.model}"/>
+    </tr>
+    <tr>
+        <th th:colspan="2">
+            <a th:href="@{{src}(src=${car.src})}">
+                <button2 class="button2" style="vertical-align:middle"/>
+                <span>Check Photo</span>
+                </button2>
+            </a>
+        </th>
     </tr>
     <tr>
         <th>First<br>Registration</th>
