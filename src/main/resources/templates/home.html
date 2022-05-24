@@ -7,7 +7,7 @@
 <body>
 <h1 th:align="center">OUR VEHICLES</h1>
 <style>
-    th { border: 1px solid gray; }
+    th { border: 1px double black; }
 </style>
 <table class="table" th:align="center" th:width="1000">
     <thead>
@@ -29,7 +29,7 @@
         <td th:text="${car.firstRegistration}"/>
         <td th:text="${car.horsePower}"/>
         <td th:text="${car.bodyType}"/>
-        <td th:text="${car.pricePerDay}" th:bgcolor="red"/>
+        <td th:text="${car.pricePerDay}" th:bgcolor="crimson"/>
     </tr>
     </tbody>
 </table>
