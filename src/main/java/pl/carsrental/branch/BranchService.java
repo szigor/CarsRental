@@ -40,6 +40,14 @@ public class BranchService {
         return null;
     }
 
+    public Branch getBranchById(Long branchId) {
+        boolean exists = branchRepository.existsById(branchId);
+        if (!exists) {
+            throw new IllegalStateException("branch with id " + branchId + " does not exists");
+        }
+        return branchRepository.getById(branchId);
+    }
+
     public void deleteBranchById(Long branchId) {
         boolean exists = branchRepository.existsById(branchId);
         if (!exists) {

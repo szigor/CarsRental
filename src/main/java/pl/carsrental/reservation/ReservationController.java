@@ -11,6 +11,7 @@ import pl.carsrental.cars.Car;
 import pl.carsrental.cars.CarService;
 import pl.carsrental.cars.Status;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,27 +46,33 @@ public class ReservationController {
     public String handleNewBook(
             @ModelAttribute("emptyReservation") Reservation reservation,
             @ModelAttribute("carId") Long carId,
-            @ModelAttribute("branchEnd") String branch
+            @ModelAttribute("branchEnd") Long branchId
     ){
         Car car = carService.getCar(carId);
+        Branch branchEnd = branchService.getBranchById(branchId);
+        BigDecimal price = reservationService.calcBookingPrice(reservation, car);
 
-        if (car.getStatus() == Status.AVAILABLE) {
-
-            car.setReservation(reservation);
-            car.setStatus(Status.BORROWED);
-            reservation.setCarOnReservation(car);
-            reservation.setReservationDate(LocalDateTime.now());
-            reservationService.addReservation(reservation);
-            log.info("Handle new Reservation: " + reservation);
-            return "redirect:/branches";
-        } else {
-            switch (car.getStatus()) {
-                case BORROWED:
-                    log.error("Samochód wypozyczony");
-                case UNAVAILABLE:
-                    log.error("Samochód niedostępny");
-            }
-            return "redirect:/auta";
+        switch (car.getStatus()) {
+            case AVAILABLE:
+                reservation.setReservationDate(LocalDateTime.now());
+                reservation.setCarOnReservation(car);
+                reservation.setPrice(price);
+                reservation.setBranchStart(car.getBranch());
+                car.setReservation(reservation);
+                car.setStatus(Status.BORROWED);
+                car.setBranch(branchEnd);
+                reservationService.addReservation(reservation);
+                log.info("Handle new Reservation: " + reservation);
+                return "redirect:/branches";
+            case BORROWED:
+                log.error("Car is borrowed");
+                return "redirect:/auta";
+            case UNAVAILABLE:
+                log.error("Car is currently unavailable");
+                return "redirect:/auta";
+            default:
+                log.error("Wrong car status");
+                return "redirect:/auta";
         }
     }
 
