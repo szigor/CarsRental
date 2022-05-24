@@ -53,4 +53,21 @@ public class ReservationService {
         return BigDecimal.valueOf(price);
     }
 
+    public boolean isDateCorrect(Reservation reservation) {
+        Date fromDate = reservation.getFromDate();
+        Date toDate = reservation.getToDate();
+        Date now = Date.from(Instant.now());
+        int compareTo = fromDate.compareTo(toDate);
+        int compareToNow = now.compareTo(fromDate);
+        return compareTo < 0 && compareToNow <= 0;
+    }
+
+    public BigDecimal isBranchEndSameToStart(Reservation reservation, BigDecimal price) {
+        BigDecimal extraPrice = BigDecimal.valueOf(200.00);
+        if(reservation.getBranchStart() != reservation.getBranchEnd()) {
+            price = price.add(extraPrice);
+        }
+        return price;
+    }
+
 }

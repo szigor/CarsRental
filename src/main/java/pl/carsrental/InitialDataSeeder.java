@@ -54,7 +54,7 @@ public class InitialDataSeeder implements Runnable{
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.DIESEL)
                 .colour(Colour.BLACK)
-                .status(Status.AVAILABLE)
+                .status(Status.UNAVAILABLE)
                 .build());
 
         Car car2 = carRepository.save(Car.builder()
@@ -158,33 +158,21 @@ public class InitialDataSeeder implements Runnable{
                 .branches(
                         List.of(
                                 branchWwa,
-                                branchWro
-                        )
-                )
-                .build());
-
-        Rental rental2 = rentRepository.save(Rental.builder()
-                .email("wypo2@gmail.com")
-                .name("Wypozyczalnia aut2")
-                .owner("Jan Kowalski")
-                .webDomain("www.wypo2.com")
-                .branches(
-                        List.of(
+                                branchWro,
                                 branchGd
                         )
                 )
                 .build());
 
-
-        Reservation reservation1 = reservationRepository.save(Reservation.builder()
-                .branchStart(branchGd)
-                .branchEnd(branchWwa)
-                .carOnReservation(car1)
-                .client(client1)
-                .reservationDate(LocalDateTime.now())
-                .price(BigDecimal.valueOf(349.99))
-//                .fromDate(LocalDateTime.now().plusDays(1))
-//                .toDate(LocalDateTime.now().plusDays(6))
-                .build());
+//        Reservation reservation1 = reservationRepository.save(Reservation.builder()
+//                .branchStart(branchGd)
+//                .branchEnd(branchWwa)
+//                .carOnReservation(car1)
+//                .client(client1)
+//                .reservationDate(LocalDateTime.now())
+//                .price(BigDecimal.valueOf(349.99))
+////                .fromDate(LocalDateTime.now().plusDays(1))
+////                .toDate(LocalDateTime.now().plusDays(6))
+//                .build());
     }
 }

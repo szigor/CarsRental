@@ -3,6 +3,7 @@ package pl.carsrental.reservation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import pl.carsrental.branch.Branch;
@@ -19,6 +20,7 @@ import java.util.List;
 @Controller
 @RequiredArgsConstructor
 //@RequestMapping(path = "/reservation")
+@Transactional
 @RequestMapping
 public class ReservationController {
 
@@ -43,7 +45,7 @@ public class ReservationController {
     }
 
     @PostMapping(path = "/reservation/save")
-    public String handleNewBook(
+    public String handleNewReservation(
             @ModelAttribute("emptyReservation") Reservation reservation,
             @ModelAttribute("carId") Long carId,
             @ModelAttribute("branchEnd") Long branchId
@@ -54,16 +56,22 @@ public class ReservationController {
 
         switch (car.getStatus()) {
             case AVAILABLE:
-                reservation.setReservationDate(LocalDateTime.now());
-                reservation.setCarOnReservation(car);
-                reservation.setPrice(price);
-                reservation.setBranchStart(car.getBranch());
-                car.setReservation(reservation);
-                car.setStatus(Status.BORROWED);
-                car.setBranch(branchEnd);
-                reservationService.addReservation(reservation);
-                log.info("Handle new Reservation: " + reservation);
-                return "redirect:/branches";
+                if (reservationService.isDateCorrect(reservation)) {
+                    reservation.setReservationDate(LocalDateTime.now());
+                    reservation.setBranchStart(car.getBranch());
+                    reservation.setCarOnReservation(car);
+                    // if branch start is not equal to branch end - price += 200.00
+                    reservation.setPrice(reservationService.isBranchEndSameToStart(reservation, price));
+                    car.setReservation(reservation);
+                    car.setStatus(Status.BORROWED);
+                    car.setBranch(branchEnd);
+                    reservationService.addReservation(reservation);
+                    log.info("Handle new Reservation: " + reservation);
+                    return "redirect:/branches";
+                } else {
+                    log.error("Wrong date");
+                    return "redirect:/auta";
+                }
             case BORROWED:
                 log.error("Car is borrowed");
                 return "redirect:/auta";
