@@ -9,6 +9,9 @@
     td { border: 3px groove darkgreen; }
     th { border: 3px groove darkgreen; }
 </style>
+<p>
+    <a class="admin" th:text="'Admin panel'" th:href="@{'/admin'}"/>
+</p>
 <h1 th:align="center">
     <a th:text="${branches.get(0).rental.name}"/>
 </h1>

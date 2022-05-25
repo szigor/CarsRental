@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin panel</title>
+</head>
+<body>
+<style>
+    .home {
+        font-size: 25px;
+    }
+</style>
+<h1 th:align="center">Admin panel</h1>
+<div th:align="center">
+    <p>
+        <a th:text="'Car Panel'" th:href="@{'admin/cars'}"/><br>
+    </p>
+    <p>
+        <a th:text="'Branch Panel'" th:href="@{'admin/branches'}"/><br>
+    </p>
+    <p>
+        <a th:text="'Employees Panel'" th:href="@{'admin/employees'}"/><br>
+    </p>
+    <p>
+        <a th:text="'Reservation Panel'" th:href="@{'admin/reservations'}"/><br>
+    </p>
+    <p>
+        <a th:text="'Client Panel'" th:href="@{'admin/clients'}"/><br>
+    </p>
+</div>
+<p class="home" th:align="center">
+    <br><a th:text="HOME" th:href="@{'/branches'}"/>
+</p>
+</body>
+</html>
