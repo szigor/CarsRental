@@ -4,18 +4,18 @@
     <meta charset="UTF-8">
     <title>Branches</title>
 </head>
-<body>
+<body th:align="center">
 <style>
     td { border: 3px groove darkgreen; }
     th { border: 3px groove darkgreen; }
 </style>
 <p>
-    <a class="admin" th:text="'Admin panel'" th:href="@{'/admin'}"/>
+    <a class="admin" th:align="right" th:text="'Admin panel'" th:href="@{'/admin'}"/>
 </p>
-<h1 th:align="center">
+<h1>
     <a th:text="${branches.get(0).rental.name}"/>
 </h1>
-<h2 th:align="center">
+<h2>
     <img src="https://advancedfleetmanagementconsulting.com/eng/wp-content/uploads/sites/3/2020/08/car-rental-sefa-ozel-GettyImages-1024x394.jpg"/>
     <p>Dziś jest: <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span></p>
     <p>Witamy w naszej wypożyczalni samochodów!</p>
@@ -34,7 +34,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:align="center" th:each="branch : ${branches}">
+    <tr th:each="branch : ${branches}">
         <th>
             <a th:text="${branch.address}"/>
         </th>
@@ -49,6 +49,8 @@
     </tr>
     </tbody>
 </table>
-
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
 </body>
 </html>

@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <title>Login page</title>
 </head>
-<body>
-<h1 th:align="center">Strona logowania</h1>
+<body th:align="center">
+<h1>Strona logowania</h1>
 
-<form method="post" th:align="center" th:action="@{/login}">
+<form method="post" th:action="@{/login}">
 
     <label>
         Login:
@@ -24,5 +24,8 @@
     <br>
     <button type="submit">Zaloguj</button>
 </form>
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
 </body>
 </html>

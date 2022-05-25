@@ -6,14 +6,14 @@
     <meta charset="UTF-8">
     <title>Our vehicles</title>
 </head>
-<body>
-<h1 th:align="center">OUR VEHICLES</h1>
+<body th:align="center">
+<h1>OUR VEHICLES</h1>
 <style>
     th { border: 1px double black; }
 </style>
 <table class="table" th:align="center" th:width="1000">
     <thead>
-    <tr th:align="center">
+    <tr>
         <th>Make</th>
         <th>Model</th>
         <th>First registration</th>
@@ -23,7 +23,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:align="center" th:each="car : ${cars}">
+    <tr th:each="car : ${cars}">
         <td>
             <a th:text="${car.make}" th:href="@{'/auta/' + ${car.id}}"/>
         </td>
@@ -35,6 +35,8 @@
     </tr>
     </tbody>
 </table>
-
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
 </body>
 </html>
