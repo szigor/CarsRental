@@ -55,7 +55,7 @@ public class InitialDataSeeder implements Runnable{
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.DIESEL)
                 .colour(Colour.BLACK)
-                .status(Status.UNAVAILABLE)
+                .status(Status.AVAILABLE)
                 .build());
 
         Car car2 = carRepository.save(Car.builder()

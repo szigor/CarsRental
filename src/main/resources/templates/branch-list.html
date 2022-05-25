@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Branches</title>
@@ -16,9 +16,10 @@
     <a th:text="${branches.get(0).rental.name}"/>
 </h1>
 <h2 th:align="center">
+    <img src="https://advancedfleetmanagementconsulting.com/eng/wp-content/uploads/sites/3/2020/08/car-rental-sefa-ozel-GettyImages-1024x394.jpg"/>
     <p>Dziś jest: <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span></p>
     <p>Witamy w naszej wypożyczalni samochodów!</p>
-    <p> Znajdą Państwo poniżej wykaz aut jakimi obecnie dysponujemy w naszych oddziałach.
+    <p> Poniżej znajdą Państwo wykaz aut jakimi obecnie dysponujemy w naszych oddziałach.
         Zachęcamy do skorzystania :)
     </p>
 </h2>
