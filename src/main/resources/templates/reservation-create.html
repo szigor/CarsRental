@@ -7,7 +7,7 @@
     <title>Reservation</title>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
 </head>
-<body>
+<body th:align="center">
 <style>
     h1 {
         font-family: monospace;
@@ -38,13 +38,13 @@
         color: white;
     }
 </style>
-<h1 th:align="center">Booking for:</h1>
-<h2 th:align="center">
+<h1>Booking for:</h1>
+<h2>
     <a th:object="${car}" th:text="${car.make}"/>
     <a th:object="${car}" th:text="${car.model}"/>
 </h2>
 <form method="post" th:action="@{/reservation/save}" th:object="${emptyReservation}">
-    <div th:align="center">
+    <div>
 
         <input name="carId" type="hidden" th:value="${car.getId()}"/>
 
@@ -68,7 +68,7 @@
             <input type="text" th:field="*{client.email}"/>
         </label>
     </div>
-    <div th:align="center">
+    <div>
         <br>
         <label>
             From date:
@@ -80,10 +80,10 @@
             <input type="date" th:field="*{toDate}"/>
         </label>
     </div>
-    <div th:align="center">
+    <div>
         <br>
         <label>
-            <a th:align="center">Return place<br></a>
+            <a>Return place<br></a>
             <select name="branchEnd" th:object="${branchEnd}" >
                 <option
                         th:each="branch : ${branches}"
@@ -94,13 +94,13 @@
 <!--            <input type="text"/>-->
         </label>
     </div>
-    <div th:align="center">
+    <div>
         <br>
         <button type="submit" class="button">Book now!</button>
     </div>
-
-
 </form>
-
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
 </body>
 </html>
