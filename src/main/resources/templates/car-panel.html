@@ -2,10 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Car admin panel</title>
+    <title>Car panel</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
 </head>
 <body>
-<h1 th:align="center">CAR ADMIN PANEL</h1>
+
+<table th:align="center" class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Make</th>
+        <th scope="col">Model</th>
+        <th scope="col">Mileage</th>
+        <th scope="col">Price per day</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td th:text="${car.id}"/>
+        <td th:text="${car.make}"/>
+        <td th:text="${car.model}"/>
+        <td th:text="${car.mileage}"/>
+        <td th:text="${car.pricePerDay}"/>
+        <td><a th:text="delete" th:href="@{/admin/car/delete/{id} / (id=${car.id}) }"/></td>
+        <td><a th:href="@{/admin/car/edit/{id}/(id=${car.id}) }">edit</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div>
+    <p th:align="center">
+        <a th:href="@{/admin/car/create}">Add new car</a>
+    </p>
+</div>
+<div>
+    <p th:align="center">
+        <br><a th:text="'Back to admin panel ->'" th:href="@{'/admin'}"/>
+    </p>
+</div>
 
 </body>
 </html>

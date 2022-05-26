@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Car Editor</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+</head>
+<body>
+<form method="post" th:action="@{/admin/car/update}" th:object="${car}">
+
+    <input type="hidden" th:field="*{id}">
+    <input type="hidden" th:field="*{branch}">
+    <input type="hidden" th:field="*{reservation}">
+
+    <label>
+        Make:
+        <input type="text" th:field="*{make}"/>
+    </label>
+
+    <label>
+        Model:
+        <input type="text" th:field="*{model}"/>
+    </label>
+
+    <label>
+        HP:
+        <input type="text" th:field="*{horsePower}"/>
+    </label>
+
+    <label>
+        Capacity:
+        <input type="text" th:field="*{capacity}"/>
+    </label>
+
+    <label>
+        First registration:
+        <input type="text" th:field="*{firstRegistration}"/>
+    </label>
+
+    <label>
+        Mileage:
+        <input type="text" th:field="*{mileage}"/>
+    </label>
+
+    <label>
+        Price per day:
+        <input type="text" th:field="*{pricePerDay}"/>
+    </label>
+
+    <label>
+        Body Type:
+        <input type="text" th:field="*{bodyType}"/>
+    </label>
+
+    <label>
+        Fuel:
+        <input type="text" th:field="*{fuel}"/>
+    </label>
+
+    <label>
+        Colour:
+        <input type="text" th:field="*{colour}"/>
+    </label>
+
+    <label>
+        Status:
+        <input type="text" th:field="*{status}"/>
+    </label>
+
+    <button type="submit">Edit car</button>
+
+</form>
+
+</body>
+</html>

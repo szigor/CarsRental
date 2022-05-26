@@ -38,7 +38,7 @@ public class ReservationController {
     @GetMapping(path = "/auta/{carId}/create")
     public String showCreateReservationForm(@PathVariable("carId") Long carId, ModelMap modelMap) {
         modelMap.addAttribute("emptyReservation", new Reservation());
-        modelMap.addAttribute("car", carService.getCar(carId));
+        modelMap.addAttribute("car", carService.getCarById(carId));
         modelMap.addAttribute("branches", branchService.getBranches());
         modelMap.addAttribute("branchEnd", null);
         return "reservation-create";
@@ -50,7 +50,7 @@ public class ReservationController {
             @ModelAttribute("carId") Long carId,
             @ModelAttribute("branchEnd") Long branchId
     ){
-        Car car = carService.getCar(carId);
+        Car car = carService.getCarById(carId);
         Branch branchEnd = branchService.getBranchById(branchId);
         BigDecimal price = reservationService.calcBookingPrice(reservation, car);
 

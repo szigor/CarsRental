@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client panel</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+</head>
+<body>
+
+<table th:align="center" class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First name</th>
+        <th scope="col">Surname</th>
+        <th scope="col">Email</th>
+        <th scope="col">Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.id}"/>
+        <td th:text="${client.firstName}"/>
+        <td th:text="${client.surname}"/>
+        <td th:text="${client.email}"/>
+        <td th:text="${client.adress}"/>
+        <td><a th:text="delete" th:href="@{/admin/client/delete/{id} / (id=${client.id}) }"/></td>
+        <td><a th:href="@{/admin/client/edit/{id}/(id=${client.id}) }">edit</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <p th:align="center">
+        <a th:href="@{/admin/client/create}">Add new client</a>
+    </p>
+</div>
+<div>
+    <p th:align="center">
+        <br><a th:text="'Back to admin panel ->'" th:href="@{'/admin'}"/>
+    </p>
+</div>
+</body>
+</html>

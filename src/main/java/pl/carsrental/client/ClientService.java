@@ -23,9 +23,14 @@ public class ClientService {
         return clientRepository.findAll();
     }
 
-    public void addClient(Client client) {
+    public Client getClientById(Long clientId) {
+        isClientExist(clientId);
+        return clientRepository.getById(clientId);
+    }
+
+    public void save(Client client) {
         clientRepository.save(client);
-        log.info("Added " + client);
+        log.info("Saved " + client);
     }
 
     public void deleteClientById(Long clientId) {
@@ -34,5 +39,12 @@ public class ClientService {
             throw new IllegalStateException("client with id " + clientId + " does not exists");
         }
         clientRepository.deleteById(clientId);
+    }
+
+    private void isClientExist(Long clientId) {
+        boolean exists = clientRepository.existsById(clientId);
+        if (!exists) {
+            throw new IllegalStateException("client with id " + clientId + " does not exists");
+        }
     }
 }

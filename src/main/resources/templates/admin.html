@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin panel</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
 </head>
 <body>
 <style>
@@ -10,6 +11,9 @@
         font-size: 25px;
     }
 </style>
+<p>
+    <a th:text="Logout" th:href="@{'/logout'}"/>
+</p>
 <h1 th:align="center">Admin panel</h1>
 <div th:align="center">
     <p>

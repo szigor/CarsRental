@@ -31,7 +31,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and()
                 .logout()
-                .logoutSuccessUrl("/auta")
+                .logoutSuccessUrl("/branches")
                 .invalidateHttpSession(true)
                 .permitAll();
         http.csrf().disable();

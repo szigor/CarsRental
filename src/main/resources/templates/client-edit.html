@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Client editor</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+</head>
+<body>
+<form method="post" th:action="@{/admin/client/update}" th:object="${client}">
+
+    <input type="hidden" th:field="*{id}">
+
+    <label>
+        First name:
+        <input type="text" th:field="*{firstName}"/>
+    </label>
+
+    <label>
+        Surname:
+        <input type="text" th:field="*{surname}"/>
+    </label>
+
+    <label>
+        Email:
+        <input type="text" th:field="*{email}"/>
+    </label>
+
+    <label>
+        Address:
+        <input type="text" th:field="*{adress}"/>
+    </label>
+
+    <button type="submit">Edit client</button>
+
+</form>
+</body>
+</html>

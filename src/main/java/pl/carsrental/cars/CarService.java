@@ -5,10 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Slf4j
 @Service
@@ -26,7 +24,7 @@ public class CarService {
         return carRepository.findAll(Sort.by("pricePerDay").ascending());
     }
 
-    public Car getCar(Long carId) {
+    public Car getCarById(Long carId) {
         isCarExist(carId);
         return carRepository.getById(carId);
     }
@@ -39,6 +37,10 @@ public class CarService {
     public void deleteCarById(Long carId) {
         isCarExist(carId);
         carRepository.deleteById(carId);
+    }
+
+    public void save(Car car) {
+        carRepository.save(car);
     }
 
     public Boolean isAvailable(Long carId) {
