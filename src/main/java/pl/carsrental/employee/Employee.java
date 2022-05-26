@@ -31,17 +31,23 @@ public class Employee {
     @NotBlank
     private String surname;
 
-    //    @NotBlank
+//    @NotBlank
     @Enumerated(EnumType.STRING)
     private Stand standing;
+
+    @NotBlank
+    private String email;
+
+    @NotBlank
+    private String address;
 
 //    @ManyToOne(optional = false)
     @ManyToOne
     private Branch branch;
 
-//    @OneToMany(mappedBy = "employee")
-    @OneToMany
-    private List<Hire> hireList;
+////    @OneToMany(mappedBy = "employee")
+//    @OneToMany
+//    private List<Hire> hireList;
 
     @SuppressWarnings("unused") //hibernate tego potrzebuje
     protected Employee() {

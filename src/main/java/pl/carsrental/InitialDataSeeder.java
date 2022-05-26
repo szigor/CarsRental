@@ -24,7 +24,7 @@ import java.util.List;
 @Component
 @Transactional
 @RequiredArgsConstructor
-public class InitialDataSeeder implements Runnable{
+public class InitialDataSeeder implements Runnable {
 
     private final RentRepository rentRepository;
     private final BranchRepository branchRepository;
@@ -122,25 +122,31 @@ public class InitialDataSeeder implements Runnable{
                 .firstName("Marcin")
                 .surname("Nowacki")
                 .standing(Stand.EMPLOYEE)
+                .email("m.nowacki@wp.pl")
+                .address("Gliwice")
                 .build());
 
         Employee employee2 = employeeRepository.save(Employee.builder()
                 .firstName("Jagoda")
-                .surname("Nowacka")
+                .surname("Krajniak")
                 .standing(Stand.EMPLOYEE)
+                .email("j.krajniak@wp.pl")
+                .address("Radom")
                 .build());
 
         Employee manager = employeeRepository.save(Employee.builder()
                 .firstName("Mariusz")
                 .surname("Pudzianowski")
                 .standing(Stand.MANAGER)
+                .email("m.pudzianowski@wp.pl")
+                .address("Warszawa")
                 .build());
 
 
         Branch branchWwa = branchRepository.save(Branch.builder()
                 .address("Warszawa")
-                .cars(List.of(car1,car2))
-                .employees(List.of(employee1,employee2))
+                .cars(List.of(car1, car2))
+                .employees(List.of(employee1, employee2))
                 .build());
 
         Branch branchGd = branchRepository.save(Branch.builder()

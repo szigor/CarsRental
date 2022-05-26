@@ -7,8 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
-@Controller
 @Slf4j
+@Controller
 @RequiredArgsConstructor
 @Transactional
 public class ClientController {
