@@ -5,7 +5,7 @@
     <title>Add Car</title>
     <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
 </head>
-<body>
+<body th:align="center">
 <form method="post" th:action="@{/admin/car/save}" th:object="${emptyCar}">
 
     <label>
@@ -66,6 +66,8 @@
     <button type="submit">Add car</button>
 
 </form>
-
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
 </body>
 </html>
