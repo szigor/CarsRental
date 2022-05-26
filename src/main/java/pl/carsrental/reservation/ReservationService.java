@@ -7,9 +7,7 @@ import pl.carsrental.cars.Car;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
-import java.time.Duration;
 import java.time.Instant;
-import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

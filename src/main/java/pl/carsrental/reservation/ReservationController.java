@@ -14,12 +14,10 @@ import pl.carsrental.cars.Status;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-//@RequestMapping(path = "/reservation")
 @Transactional
 @RequestMapping
 public class ReservationController {
@@ -30,9 +28,10 @@ public class ReservationController {
 
     private final BranchService branchService;
 
-    @GetMapping
-    public List<Reservation> getReservations() {
-        return reservationService.getReservations();
+    @GetMapping(path = "/admin/reservations")
+    public String getReservations(ModelMap modelMap) {
+        modelMap.addAttribute("reservations", reservationService.getReservations());
+        return "reservation-panel";
     }
 
     @GetMapping(path = "/auta/{carId}/create")
@@ -84,8 +83,10 @@ public class ReservationController {
         }
     }
 
-    @DeleteMapping(path = "{reservationId}")
-    public void deleteReservation(@PathVariable("reservationId") Long reservationId) {
+    @GetMapping(path = "/admin/reservation/delete/{reservationId}")
+    public String deleteReservation(@PathVariable("reservationId") Long reservationId) {
         reservationService.deleteReservation(reservationId);
+        log.info("Deleted reservation with id " + reservationId);
+        return "redirect:/admin/reservations";
     }
 }

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Branch panel</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+</head>
+<body>
+<table th:align="center" class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Address</th>
+<!--        <th scope="col">Manager name</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="branch : ${branches}">
+        <td th:text="${branch.id}"/>
+        <td th:text="${branch.address}"/>
+<!--        <td th:text="${branch.getManager().surname}"/>-->
+        <td><a th:text="delete" th:href="@{/admin/branch/delete/{id} / (id=${branch.id}) }"/></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
