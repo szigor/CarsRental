@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login page</title>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+</head>
+<body th:align="center">
+<h1>Strona logowania</h1>
+
+<form method="post" th:action="@{/login}">
+
+    <label>
+        Login:
+        <input type="text" name="username">
+        <br>
+        <br>
+    </label>
+
+    <label>
+        Password:
+        <input type="password" name="password">
+    </label>
+    <br>
+    <br>
+    <button type="submit">Zaloguj</button>
+</form>
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
+</body>
+</html>
