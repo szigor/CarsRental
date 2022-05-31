@@ -13,11 +13,8 @@ import pl.carsrental.employee.EmployeeRepository;
 import pl.carsrental.employee.Stand;
 import pl.carsrental.rental.RentRepository;
 import pl.carsrental.rental.Rental;
-import pl.carsrental.reservation.Reservation;
 import pl.carsrental.reservation.ReservationRepository;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -43,78 +40,120 @@ public class InitialDataSeeder implements Runnable {
                 .build());
 
 
-        Car car1 = carRepository.save(Car.builder()
+        Car a8 = carRepository.save(Car.builder()
                 .make("Audi")
                 .model("A8")
-                .src("https://mercury.bid.cars/1-69224661/2012-Audi-A8-WAURVAFD2CN003480-1.jpg")
-                .horsePower(350)
-                .capacity(4.134)
-                .firstRegistration(2012)
-                .mileage(182.023)
-                .pricePerDay(700.0)
+                .horsePower(435)
+                .capacity(4.0)
+                .firstRegistration(2018)
+                .mileage(103.023)
+                .pricePerDay(260.0)
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.DIESEL)
-                .colour(Colour.BLACK)
                 .status(Status.AVAILABLE)
                 .build());
 
-        Car car2 = carRepository.save(Car.builder()
+        Car m5 = carRepository.save(Car.builder()
                 .make("BMW")
-                .model("335i")
-                .src("https://www.njuskalo.hr/image-w920x690/auti/bmw-e92-320d-coupe-povoljno-slika-105014631.jpg")
-                .horsePower(306)
-                .capacity(2.979)
-                .firstRegistration(2008)
-                .mileage(123.721)
-                .pricePerDay(800.0)
-                .bodyType(BodyType.COUPE)
+                .model("M5")
+                .horsePower(600)
+                .capacity(4.4)
+                .firstRegistration(2019)
+                .mileage(47.721)
+                .pricePerDay(460.0)
+                .bodyType(BodyType.SALOON)
                 .fuel(Fuel.PETROL)
-                .colour(Colour.WHITE)
                 .status(Status.AVAILABLE)
                 .build());
 
-        Car car3 = carRepository.save(Car.builder()
+        Car g63 = carRepository.save(Car.builder()
                 .make("Mercedes-benz")
                 .model("G63")
-                .src("https://a.allegroimg.com/s512/117a01/2ed16ae1432dba62af8599230f59")
-                .horsePower(563)
-                .capacity(5.461)
-                .firstRegistration(2016)
-                .mileage(47.443)
-                .pricePerDay(2000.0)
+                .horsePower(585)
+                .capacity(4.0)
+                .firstRegistration(2020)
+                .mileage(18.443)
+                .pricePerDay(480.0)
                 .bodyType(BodyType.SUV)
                 .fuel(Fuel.PETROL)
-                .colour(Colour.SILVER)
                 .status(Status.AVAILABLE)
                 .build());
 
-        Car car4 = carRepository.save(Car.builder()
+        Car gtr = carRepository.save(Car.builder()
                 .make("Nissan")
                 .model("GT-R")
-                .src("https://motoinspiracje.pl/wp-content/uploads/2020/06/2-14.jpg")
                 .horsePower(565)
-                .capacity(3.799)
+                .capacity(3.8)
                 .firstRegistration(2019)
                 .mileage(19.885)
-                .pricePerDay(1800.00)
+                .pricePerDay(450.0)
                 .bodyType(BodyType.COUPE)
                 .fuel(Fuel.PETROL)
-                .colour(Colour.BLUE)
                 .status(Status.AVAILABLE)
                 .build());
 
-        Car car5 = carRepository.save(Car.builder()
-                .make("Tesla")
-                .model("Model 3")
-                .src("https://cdn.dealeraccelerate.com/vfm/1/71/4158/790x1024/2018-tesla-model-3-auto-pilot")
-                .horsePower(497)
+        Car ferrari812 = carRepository.save(Car.builder()
+                .make("Ferrari")
+                .model("812")
+                .horsePower(800)
+                .capacity(6.5)
+                .firstRegistration(2022)
+                .mileage(2.885)
+                .pricePerDay(600.0)
+                .bodyType(BodyType.COUPE)
+                .fuel(Fuel.PETROL)
+                .status(Status.AVAILABLE)
+                .build());
+
+        Car panamera = carRepository.save(Car.builder()
+                .make("Porsche")
+                .model("Panamera")
+                .horsePower(422)
+                .capacity(4.0)
+                .firstRegistration(2017)
+                .mileage(95.885)
+                .pricePerDay(280.0)
+                .bodyType(BodyType.SALOON)
+                .fuel(Fuel.DIESEL)
+                .status(Status.AVAILABLE)
+                .build());
+
+        Car arteon = carRepository.save(Car.builder()
+                .make("Volkswagen")
+                .model("Arteon")
+                .horsePower(316)
+                .capacity(2.0)
                 .firstRegistration(2021)
-                .mileage(9.332)
-                .pricePerDay(1500.00)
+                .mileage(19.885)
+                .pricePerDay(200.0)
+                .bodyType(BodyType.KOMBI)
+                .fuel(Fuel.PETROL)
+                .status(Status.AVAILABLE)
+                .build());
+
+        Car xf = carRepository.save(Car.builder()
+                .make("Jaguar")
+                .model("XF")
+                .horsePower(295)
+                .capacity(3.0)
+                .firstRegistration(2016)
+                .mileage(128.885)
+                .pricePerDay(160.0)
+                .bodyType(BodyType.SALOON)
+                .fuel(Fuel.DIESEL)
+                .status(Status.AVAILABLE)
+                .build());
+
+        Car modelS = carRepository.save(Car.builder()
+                .make("Tesla")
+                .model("Model S")
+                .horsePower(422)
+                .firstRegistration(2019)
+                .mileage(33.332)
+                .pricePerDay(240.0)
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.ELECTRIC)
-                .colour(Colour.RED)
-                .status(Status.UNAVAILABLE)
+                .status(Status.AVAILABLE)
                 .build());
 
 
@@ -145,19 +184,19 @@ public class InitialDataSeeder implements Runnable {
 
         Branch branchWwa = branchRepository.save(Branch.builder()
                 .address("Warszawa")
-                .cars(List.of(car1, car2))
+                .cars(List.of(modelS, ferrari812, g63, a8))
                 .employees(List.of(employee1, employee2))
                 .build());
 
         Branch branchGd = branchRepository.save(Branch.builder()
                 .address("Gdansk")
-                .cars(List.of(car3, car4))
+                .cars(List.of(arteon, m5, xf))
                 .employee(manager)
                 .build());
 
         Branch branchWro = branchRepository.save(Branch.builder()
                 .address("Wroclaw")
-                .cars(List.of(car5))
+                .cars(List.of(gtr, panamera))
                 .build());
 
 

@@ -107,15 +107,6 @@
         <td th:text="${car.model}"/>
     </tr>
     <tr>
-        <th th:colspan="2">
-            <a th:href="@{{src}(src=${car.src})}">
-                <button2 class="button2" style="vertical-align:middle"/>
-                <span>Check Photo</span>
-                </button2>
-            </a>
-        </th>
-    </tr>
-    <tr>
         <th>First<br>Registration</th>
         <td th:text="${car.firstRegistration}"/>
     </tr>
@@ -138,10 +129,6 @@
     <tr>
         <th>Fuel</th>
         <td th:text="${car.fuel}"/>
-    </tr>
-    <tr>
-        <th>Colour</th>
-        <td th:text="${car.colour}"/>
     </tr>
     <tr>
         <th>Status</th>

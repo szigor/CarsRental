@@ -1,0 +1,1 @@
+insert into client (id, first_name, surname, email, adress) values (2, 'marek', 'mordini', 'm.afd@adsd.pl', 'Rakow')

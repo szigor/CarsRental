@@ -30,8 +30,6 @@ public class Car {
     @NotBlank
     private String model;
 
-    private String src;
-
     private Integer horsePower;
 
     private Double capacity;
@@ -52,10 +50,6 @@ public class Car {
     @NotNull
     @Enumerated(EnumType.STRING)
     private Fuel fuel;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    private Colour colour;
 
     @NotNull
     @Enumerated(EnumType.STRING)

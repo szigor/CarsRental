@@ -15,13 +15,13 @@ public class CarController {
 
     private final CarService carService;
 
-    @GetMapping("/auta")
+    @GetMapping("/cars")
     public String getCars(ModelMap modelMap) {
         modelMap.addAttribute("cars", carService.getCars());
         return "home";
     }
 
-    @GetMapping (path = "/auta/{carId}")
+    @GetMapping (path = "/cars/{carId}")
     public String getCar(@PathVariable("carId") Long carId, ModelMap modelMap) {
         modelMap.addAttribute("car", carService.getCarById(carId));
         return "car-details";

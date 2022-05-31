@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+    <div style="text-align: center;"><img src="https://integra.com.pl/wp-content/uploads/2020/10/flota.jpg" width="800" height="400">
+    </div>
+    <meta charset="UTF-8">
+    <title>Our vehicles</title>
+</head>
+<body th:align="center">
+<h1>OUR VEHICLES</h1>
+<style>
+    th { border: 1px double black; }
+</style>
+<table class="table" th:align="center" th:width="1000">
+    <thead>
+    <tr>
+        <th>Make</th>
+        <th>Model</th>
+        <th>First registration</th>
+        <th>Horse power</th>
+        <th>Bodytype</th>
+        <th>Price per Day (zł)</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="car : ${cars}">
+        <td>
+            <a th:text="${car.make}" th:href="@{'/auta/' + ${car.id}}"/>
+        </td>
+        <td th:text="${car.model}"/>
+        <td th:text="${car.firstRegistration}"/>
+        <td th:text="${car.horsePower}"/>
+        <td th:text="${car.bodyType}"/>
+        <td th:text="${car.pricePerDay}" th:bgcolor="crimson"/>
+    </tr>
+    </tbody>
+</table>
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
+</body>
+</html>

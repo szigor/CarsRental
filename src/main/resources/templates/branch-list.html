@@ -29,7 +29,7 @@
     <tr th:align="center">
         <td>BRANCH PLACE</td>
         <td>
-            <a th:text="CARS" th:href="@{'auta'}"/>
+            <a th:text="CARS" th:href="@{'cars'}"/>
             <a>IN BRANCH</a>
         </td>
     </tr>
@@ -42,7 +42,7 @@
         <th>
             <ul th:each="car : ${branch.cars}">
                 <li>
-                    <a th:text="${car.make}" th:href="@{'/auta/' + ${car.id}}"/>
+                    <a th:text="${car.make}" th:href="@{'/cars/' + ${car.id}}"/>
                     <a th:text="${car.model}"/>
                 </li>
             </ul>
