@@ -202,7 +202,7 @@ public class InitialDataSeeder implements Runnable {
 
         Rental rental1 = rentRepository.save(Rental.builder()
                 .email("wypo@gmail.com")
-                .name("Wypozyczalnia aut")
+                .name("Car Rental")
                 .owner("Jan nowak")
                 .webDomain("www.wypo1.com")
                 .branches(
