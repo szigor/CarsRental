@@ -34,7 +34,7 @@ public class ReservationController {
         return "reservation-panel";
     }
 
-    @GetMapping(path = "/auta/{carId}/create")
+    @GetMapping(path = "/cars/{carId}/create")
     public String showCreateReservationForm(@PathVariable("carId") Long carId, ModelMap modelMap) {
         modelMap.addAttribute("emptyReservation", new Reservation());
         modelMap.addAttribute("car", carService.getCarById(carId));
@@ -69,17 +69,17 @@ public class ReservationController {
                     return "redirect:/branches";
                 } else {
                     log.error("Wrong date");
-                    return "redirect:/auta";
+                    return "redirect:/cars";
                 }
             case BORROWED:
                 log.error("Car is borrowed");
-                return "redirect:/auta";
+                return "redirect:/cars";
             case UNAVAILABLE:
                 log.error("Car is currently unavailable");
-                return "redirect:/auta";
+                return "redirect:/cars";
             default:
                 log.error("Wrong car status");
-                return "redirect:/auta";
+                return "redirect:/cars";
         }
     }
 

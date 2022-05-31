@@ -1,159 +1,95 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
-    <div style="text-align: center;"><img src="https://www.motofoto.in/images/search-car.gif">
-    </div>
-    <meta charset="UTF-8">
-    <title>Car details</title>
+    <link th:rel="stylesheet" th:href="@{/css/car-details.css}">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="'Car rental - ' + ${car.make} + ' ' + ${car.model}"/>
+    <link th:rel="icon" th:href="@{/images/icon.png}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
-<body th:align="center">
-<style>
-    td { border: 1px double black; }
-    th { border: 1px double black; }
-    .button {
-        display: inline-block;
-        border-radius: 4px;
-        background-color: royalblue;
-        border: none;
-        color: #FFFFFF;
-        text-align: center;
-        font-size: 28px;
-        padding: 20px;
-        width: 200px;
-        transition: all 0.5s;
-        cursor: pointer;
-        margin: 5px;
-    }
 
-    .button span {
-        cursor: pointer;
-        display: inline-block;
-        position: relative;
-        transition: 0.5s;
-    }
-
-    .button span:after {
-        content: '\00bb';
-        position: absolute;
-        opacity: 0;
-        top: 0;
-        right: -20px;
-        transition: 0.5s;
-    }
-
-    .button:hover span {
-        padding-right: 25px;
-    }
-
-    .button:hover span:after {
-        opacity: 1;
-        right: 0;
-    }
-
-    .button2
-    {background-color: #0078d0;
-        border: 0;
-        border-radius: 56px;
-        color: #fff;
-        cursor: pointer;
-        display: inline-block;
-        font-family: system-ui,-apple-system,system-ui,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",sans-serif;
-        font-size: 18px;
-        font-weight: 600;
-        outline: 0;
-        padding: 16px 21px;
-        position: relative;
-        text-align: center;
-        text-decoration: none;
-        transition: all .3s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-    }
-
-    .button2:before {
-        background-color: initial;
-        background-image: linear-gradient(#fff 0, rgba(255, 255, 255, 0) 100%);
-        border-radius: 125px;
-        content: "";
-        height: 50%;
-        left: 4%;
-        opacity: .5;
-        position: absolute;
-        top: 0;
-        transition: all .3s;
-        width: 92%;
-    }
-
-    .button2:hover {
-        box-shadow: rgba(255, 255, 255, .2) 0 3px 15px inset, rgba(0, 0, 0, .1) 0 3px 5px, rgba(0, 0, 0, .1) 0 10px 13px;
-        transform: scale(1.05);
-    }
-
-    @media (min-width: 768px) {
-        .button-71 {
-            padding: 16px 48px;
-        }
-    }
-</style>
-<table class="table" th:align="center" th:height="400" th:width="400" th:bgcolor="GhostWhite">
-    <tr>
-        <th>Make</th>
-        <td th:text="${car.make}"/>
-    </tr>
-    <tr>
-        <th>Model</th>
-        <td th:text="${car.model}"/>
-    </tr>
-    <tr>
-        <th>First<br>Registration</th>
-        <td th:text="${car.firstRegistration}"/>
-    </tr>
-    <tr>
-        <th>Horse power</th>
-        <td th:text="${car.horsePower}"/>
-    </tr>
-    <tr>
-        <th>Capacity</th>
-        <td th:text="${car.capacity}"/>
-    </tr>
-    <tr>
-        <th>Mileage</th>
-        <td th:text="${car.mileage}"/>
-    </tr>
-    <tr>
-        <th>Body Type</th>
-        <td th:text="${car.bodyType}"/>
-    </tr>
-    <tr>
-        <th>Fuel</th>
-        <td th:text="${car.fuel}"/>
-    </tr>
-    <tr>
-        <th>Status</th>
-        <td th:text="${car.status}"/>
-    </tr>
-    <tr>
-        <th>Branch</th>
-        <td>
-            <a th:text="${car.branch.address}" th:href="@{'/branches'}"/>
-        </td>
-    </tr>
-    <tr>
-        <th>Price per day</th>
-        <td th:text="${car.pricePerDay}" th:bgcolor="crimson"/>
-    </tr>
-    <tr>
-        <th th:colspan="2">
-            <a th:href="@{{carid}/create(carid=${car.id})}">
-                <button class="button" style="vertical-align:middle"><span>Book </span></button>
-            </a>
-        </th>
-    </tr>
-</table>
-<footer>
-    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
-</footer>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/cars}">
+            <img class="logo" th:src="@{/images/logo.png}">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cars}">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/branches}">Branches</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin panel
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/h2}">Database</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/reservations}">Reservations</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/employees}">Employees</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/clients}">Clients</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/cars}">Cars</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/branches}">Branches</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="core">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 text-center">
+                <h1 th:text="${car.make} + ' ' + ${car.model}"/>
+                <img class="car-img" th:src="@{'/car-images/' + ${car.model} + '.jpg'}">
+<!--                <h5>Car description:</h5>-->
+<!--                <iframe class="car-desc" th:src="@{'/car-data/' + ${car.model} + '.txt'}" width="100%"></iframe>-->
+            </div>
+            <div class="col-lg-5 position-relative">
+                <div class="position-absolute top-50 start-50 translate-middle">
+                    <div class="row">
+                        <div class="col-6">
+                            <ul class="list">
+                                <li th:text="${car.horsePower} + ' hp'"></li>
+                                <li th:text="${car.firstRegistration}"></li>
+                            </ul>
+                        </div>
+                        <div class="col-6">
+                            <ul class="list">
+                                <li th:text="${car.capacity} + ' l'"></li>
+                                <li th:text="${car.fuel}"></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="text-center">
+                        <p class="branch text-center" th:text="'Status: ' + ${car.status}"/>
+                        <p class="branch text-center" th:text="'Place: ' + ${car.branch.address}"/>
+                        <p class="price text-center" th:text="'Price: ' + ${car.pricePerDay} + '€/day'"/>
+                        <a th:href="@{{carid}/create(carid=${car.id})}">
+                            <button class="btn btn-primary btn-lg text-center"><span>Book </span></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
 </body>
 </html>
