@@ -27,6 +27,8 @@ public class Client {
     @NotBlank
     private String surname;
 
+    private Integer tel;
+
     private String email;
 
     @NotBlank

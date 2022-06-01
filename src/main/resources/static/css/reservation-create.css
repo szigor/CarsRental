@@ -1,0 +1,84 @@
+.navbar-brand {
+    width: 120px;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 10px !important;;
+}
+
+.logo {
+    width: 120px;
+    height: 50px;
+}
+
+.nav-link {
+    font-size: larger !important;
+    margin-right: 10px;
+}
+
+section {
+    background-image: url('/images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.car-img {
+    border-radius: 10px;
+    border: 0 none;
+    padding: 0;
+    margin: 0;
+    /*min-height: 270px;*/
+    position: relative;
+    width: 40%;
+    box-shadow: 0 5px 10px #5f5a5a;
+}
+
+.first-name {
+    width: 18% !important;
+}
+
+.surname {
+    width: 25% !important;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.email {
+    width: 37% !important;
+}
+
+.phone-number {
+    width: 20% !important;
+    margin-right: 10px;
+}
+
+.address {
+    width: 40% !important;
+}
+
+.date, .branch-select-div {
+    margin: 0 auto;
+    width: 100%;
+    text-align: center;
+}
+
+.input-group {
+    width: fit-content !important;
+}
+
+.input-group-text {
+    width: fit-content;
+}
+
+.from-date {
+    width: 15% !important;
+    margin-right: 10px;
+}
+
+.to-date {
+    width: 15% !important;
+}
+
+.branch-select-div {
+    width: fit-content;
+}

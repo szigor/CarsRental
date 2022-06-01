@@ -35,6 +35,7 @@ public class InitialDataSeeder implements Runnable {
         Client client1 = clientRepository.save(Client.builder()
                 .firstName("Mariusz")
                 .surname("Kowalczyk")
+                .tel(123456789)
                 .adress("Krakow")
                 .email("m.kowalczyk@gmail.com")
                 .build());

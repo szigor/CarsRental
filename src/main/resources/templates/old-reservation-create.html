@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+    <div style="text-align: center;"><img src="https://www.wawanesa.com/resources/img/usa/blog-images/bigstock-a-young-woman-buys-a-car-in-a--331622050%20(1).jpg" width="640" height="440">
+    </div>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+</head>
+<body th:align="center">
+<style>
+    h1 {
+        font-family: monospace;
+        font-size: 40px;
+    }
+    h2 {
+        font-family: monospace;
+        font-size: 30px;
+        color: darkred;
+        font-weight: bolder;
+    }
+    .button {
+        background-color: white;
+        border: 2px solid #f44336;
+        color: black;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
+<h1>Booking for:</h1>
+<h2>
+    <a th:object="${car}" th:text="${car.make}"/>
+    <a th:object="${car}" th:text="${car.model}"/>
+</h2>
+<form method="post" th:action="@{/reservation/save}" th:object="${emptyReservation}">
+    <div>
+
+        <input name="carId" type="hidden" th:value="${car.getId()}"/>
+
+        <label>
+            First name:
+            <input type="text" th:field="*{client.firstName}"/>
+        </label>
+
+        <label>
+            Surname:
+            <input type="text" th:field="*{client.surname}"/>
+        </label>
+
+        <label>
+            Address:
+            <input type="text" th:field="*{client.adress}"/>
+        </label>
+
+        <label>
+            E-mail:
+            <input type="text" th:field="*{client.email}"/>
+        </label>
+    </div>
+    <div>
+        <br>
+        <label>
+            From date:
+            <input type="date" th:field="*{fromDate}"/>
+        </label>
+
+        <label>
+            To date:
+            <input type="date" th:field="*{toDate}"/>
+        </label>
+    </div>
+    <div>
+        <br>
+        <label>
+            <a>Return place<br></a>
+            <select name="branchEnd" th:object="${branchEnd}" >
+                <option
+                        th:each="branch : ${branches}"
+                        th:text="${branch.getAddress()}"
+                        th:value="${branch.getId()}"
+                />
+            </select>
+<!--            <input type="text"/>-->
+        </label>
+    </div>
+    <div>
+        <br>
+        <button type="submit" class="button">Book now!</button>
+    </div>
+</form>
+<footer>
+    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
+</footer>
+</body>
+</html>
