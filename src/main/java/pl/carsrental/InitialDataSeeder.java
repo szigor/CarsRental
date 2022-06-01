@@ -50,7 +50,7 @@ public class InitialDataSeeder implements Runnable {
                 .pricePerDay(260.0)
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.DIESEL)
-                .status(Status.AVAILABLE)
+                .status(Status.UNAVAILABLE)
                 .build());
 
         Car m5 = carRepository.save(Car.builder()
@@ -63,7 +63,7 @@ public class InitialDataSeeder implements Runnable {
                 .pricePerDay(460.0)
                 .bodyType(BodyType.SALOON)
                 .fuel(Fuel.PETROL)
-                .status(Status.AVAILABLE)
+                .status(Status.BORROWED)
                 .build());
 
         Car g63 = carRepository.save(Car.builder()
@@ -173,30 +173,47 @@ public class InitialDataSeeder implements Runnable {
                 .address("Radom")
                 .build());
 
-        Employee manager = employeeRepository.save(Employee.builder()
-                .firstName("Mariusz")
-                .surname("Pudzianowski")
+        Employee manager1 = employeeRepository.save(Employee.builder()
+                .firstName("Nikodem")
+                .surname("Gorecki")
                 .standing(Stand.MANAGER)
                 .email("m.pudzianowski@wp.pl")
                 .address("Warszawa")
+                .build());
+
+        Employee manager2 = employeeRepository.save(Employee.builder()
+                .firstName("Wiktor")
+                .surname("Kędzierski")
+                .standing(Stand.MANAGER)
+                .email("m.pudzianowski@wp.pl")
+                .address("Gdansk")
+                .build());
+
+        Employee manager3 = employeeRepository.save(Employee.builder()
+                .firstName("Juliusz")
+                .surname("Nowakowski")
+                .standing(Stand.MANAGER)
+                .email("m.pudzianowski@wp.pl")
+                .address("Wroclaw")
                 .build());
 
 
         Branch branchWwa = branchRepository.save(Branch.builder()
                 .address("Warszawa")
                 .cars(List.of(modelS, ferrari812, g63, a8))
-                .employees(List.of(employee1, employee2))
+                .employees(List.of(employee1, employee2, manager1))
                 .build());
 
         Branch branchGd = branchRepository.save(Branch.builder()
                 .address("Gdansk")
                 .cars(List.of(arteon, m5, xf))
-                .employee(manager)
+                .employee(manager2)
                 .build());
 
         Branch branchWro = branchRepository.save(Branch.builder()
                 .address("Wroclaw")
                 .cars(List.of(gtr, panamera))
+                .employee(manager3)
                 .build());
 
 

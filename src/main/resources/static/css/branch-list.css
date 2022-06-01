@@ -1,0 +1,51 @@
+.navbar-brand {
+    width: 120px;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 10px !important;
+;
+}
+.logo {
+    width: 120px;
+    height: 50px;
+}
+.nav-link {
+    font-size: larger !important;
+    margin-right: 10px;
+}
+.core {
+    background-color: #FFFFFF;
+    /*background-image: url('/images/background.jpg');*/
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+}
+.section {
+    box-shadow: -10px 0 8px -8px #5f5a5a, 10px 0 8px -8px #5f5a5a, 0 10px 8px -8px #5f5a5a;
+}
+.branch-img {
+    border-radius: 10px;
+    border: 0 none;
+    padding: 0;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    min-height: 270px;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    box-shadow: 0 5px 10px #5f5a5a;
+}
+.list-element {
+    font-style: italic;
+    font-weight: 400;
+}
+.branch-name {
+    font-style: oblique;
+    margin-top: 50px !important;
+    margin-bottom: 50px !important;
+}
+h3 {
+    font-size: x-large !important;
+    margin-bottom: 20px !important;
+}

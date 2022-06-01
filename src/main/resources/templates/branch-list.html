@@ -1,57 +1,83 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:https="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:rel="stylesheet" th:href="@{css/branch-list.css}">
     <meta charset="UTF-8">
-    <title>Branches</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Circle-icons-car.svg/2048px-Circle-icons-car.svg.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Car rental - branches</title>
+    <link th:rel="icon" th:href="@{images/icon.png}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
-<body th:align="center">
-<style>
-    td { border: 3px groove darkgreen; }
-    th { border: 3px groove darkgreen; }
-</style>
-<p>
-    <a class="admin" th:align="right" th:text="'Admin panel'" th:href="@{'/admin'}"/>
-</p>
-<h1>
-    <a th:text="${branches.get(0).rental.name}"/>
-</h1>
-<h2>
-    <img src="https://advancedfleetmanagementconsulting.com/eng/wp-content/uploads/sites/3/2020/08/car-rental-sefa-ozel-GettyImages-1024x394.jpg"/>
-    <p>Today is: <span th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}"></span></p>
-    <p>Welcome in our Car Rental page!</p>
-    <p> Below you will find a list of cars currently available in our branches.
-        We encourage you to use :)
-    </p>
-</h2>
-<table class="table" th:align="center" th:height="300" th:width="600">
-    <thead>
-    <tr th:align="center">
-        <td>BRANCH PLACE</td>
-        <td>
-            <a th:text="CARS" th:href="@{'cars'}"/>
-            <a>IN BRANCH</a>
-        </td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="branch : ${branches}">
-        <th>
-            <a th:text="${branch.address}"/>
-        </th>
-        <th>
-            <ul th:each="car : ${branch.cars}">
-                <li>
-                    <a th:text="${car.make}" th:href="@{'/cars/' + ${car.id}}"/>
-                    <a th:text="${car.model}"/>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/cars}">
+            <img class="logo" src="images/logo.png">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cars}">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" th:href="@{/branches}">Branches</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        Admin panel
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/h2}">Database</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/reservations}">Reservations</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/employees}">Employees</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/clients}">Clients</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/cars}">Cars</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/branches}">Branches</a></li>
+                    </ul>
                 </li>
             </ul>
-        </th>
-    </tr>
-    </tbody>
-</table>
-<footer>
-    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
-</footer>
+        </div>
+    </div>
+</nav>
+<section class="core">
+    <div class="container">
+        <div class="row section" th:each="branch : ${branches}">
+            <div class="col-6 text-center div-branch-img">
+                <img class="branch-img" th:src="@{'/branch-images/' + ${branch.address} + '.jpg'}">
+            </div>
+            <div class="branch-desc col-6">
+                <h1 class="branch-name" th:text="${branch.address}"/>
+                <div class="row info">
+                    <div class="col-6">
+                        <h3 th:if="${branch.cars}">Cars:</h3>
+                        <ul th:if="${branch.cars}" th:each="car : ${branch.cars}">
+                            <li class="list-element" th:text="${car.make} + ' ' + ${car.model}"/>
+                        </ul>
+                    </div>
+                    <div class="col-6">
+                        <h3 th:if="${branch.manager}">Manager:</h3>
+                        <ul th:if="${branch.manager}">
+                            <li class="list-element" th:text="${branch.manager.firstName} + ' ' + ${branch.manager.surname}"/>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+        integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+        integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+        crossorigin="anonymous"></script>
 </body>
 </html>

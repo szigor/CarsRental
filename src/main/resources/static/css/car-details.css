@@ -1,18 +1,20 @@
 .navbar-brand {
     width: 120px;
-    padding: 0px !important;
-    margin: 0px !important;
-    margin-right: 10px !important;
-;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 10px !important;;
 }
+
 .logo {
     width: 120px;
     height: 50px;
 }
+
 .nav-link {
     font-size: larger !important;
     margin-right: 10px;
 }
+
 .core {
     background-image: url('/images/background.jpg');
     background-repeat: no-repeat;
@@ -20,6 +22,7 @@
     background-position: center;
     background-size: cover;
 }
+
 .container {
     margin-top: 0 !important;
     margin-bottom: 0 !important;
@@ -27,10 +30,16 @@
     padding-bottom: 320px !important;
     background-color: whitesmoke;
 }
+
+h1 {
+    font-style: oblique;
+}
+
 h1, h5 {
     margin-top: 20px !important;
     margin-bottom: 20px !important;
 }
+
 .car-desc {
     font-size: 14px;
     font-style: italic;
@@ -38,6 +47,7 @@ h1, h5 {
     color: #535353;
     margin-bottom: 50px !important;
 }
+
 .car-img {
     border-radius: 10px;
     border: 0 none;
@@ -46,23 +56,54 @@ h1, h5 {
     min-height: 270px;
     position: relative;
     width: 100%;
+    box-shadow: 0 5px 10px #5f5a5a;
 }
+
+.content {
+    box-shadow: 0 5px 10px -5px #5f5a5a;
+}
+
 .list {
     font-size: x-large;
     font-style: italic;
 }
+
 li {
     width: 200%;
 }
+
+.status {
+    margin-top: 8px;
+    margin-bottom: 20px;
+}
+
 .branch {
     font-size: large;
     font-style: italic;
 }
+
 .price {
     color: brown;
     font-size: x-large;
     font-weight: 600;
 }
+
 .btn {
     width: 100%;
+}
+
+.status-available, .status-borrowed, .status-unavailable {
+    font-weight: bold;
+}
+
+.status-available {
+    color: green;
+}
+
+.status-borrowed {
+    color: darkorange;
+}
+
+.status-unavailable {
+    color: darkred;
 }

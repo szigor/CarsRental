@@ -1,7 +1,7 @@
 .navbar-brand {
     width: 120px;
-    padding: 0px !important;
-    margin: 0px !important;
+    padding: 0 !important;
+    margin: 0 !important;
     margin-right: 10px !important;
     ;
 }
@@ -46,8 +46,8 @@ h1 {
     font-weight: bold;
     background-color: #ffffff;
     color: black;
-    padding: 0px !important;
-    margin: 0px !important;
+    padding: 0 !important;
+    margin: 0 !important;
     margin-top: 20px !important;
 }
 

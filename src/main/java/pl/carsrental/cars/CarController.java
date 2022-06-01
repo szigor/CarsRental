@@ -24,6 +24,9 @@ public class CarController {
     @GetMapping (path = "/cars/{carId}")
     public String getCar(@PathVariable("carId") Long carId, ModelMap modelMap) {
         modelMap.addAttribute("car", carService.getCarById(carId));
+        modelMap.addAttribute("statusAvailable", Status.AVAILABLE);
+        modelMap.addAttribute("statusBorrowed", Status.BORROWED);
+        modelMap.addAttribute("statusUnavailable", Status.UNAVAILABLE);
         return "car-details";
     }
 

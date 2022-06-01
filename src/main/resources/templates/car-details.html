@@ -49,7 +49,7 @@
 </nav>
 <section class="core">
     <div class="container">
-        <div class="row">
+        <div class="row content">
             <div class="col-lg-7 text-center">
                 <h1 th:text="${car.make} + ' ' + ${car.model}"/>
                 <img class="car-img" th:src="@{'/car-images/' + ${car.model} + '.jpg'}">
@@ -67,18 +67,24 @@
                         </div>
                         <div class="col-6">
                             <ul class="list">
-                                <li th:text="${car.capacity} + ' l'"></li>
+                                <li th:if="${car.capacity}" th:text="${car.capacity} + ' l'"></li>
                                 <li th:text="${car.fuel}"></li>
                             </ul>
                         </div>
                     </div>
                     <div class="text-center">
-                        <p class="branch text-center" th:text="'Status: ' + ${car.status}"/>
-                        <p class="branch text-center" th:text="'Place: ' + ${car.branch.address}"/>
-                        <p class="price text-center" th:text="'Price: ' + ${car.pricePerDay} + '€/day'"/>
-                        <a th:href="@{{carid}/create(carid=${car.id})}">
+                        <div class="status text-center">
+                            <p class="branch d-inline" th:text="'Status: '"/>
+                            <p class="branch status-available d-inline" th:if="${car.status == statusAvailable}" th:text="${car.status}"/>
+                            <p class="branch status-borrowed d-inline" th:if="${car.status == statusBorrowed}" th:text="${car.status}"/>
+                            <p class="branch status-unavailable d-inline" th:if="${car.status == statusUnavailable}" th:text="${car.status}"/>
+                        </div>
+                        <p class="branch text-center" th:if="${car.branch}" th:text="'Place: ' + ${car.branch.address}"/>
+                        <p class="price text-center"  th:text="'Price: ' + ${car.pricePerDay} + '€/day'"/>
+                        <a th:href="@{{carid}/create(carid=${car.id})}" th:if="${car.status == statusAvailable}">
                             <button class="btn btn-primary btn-lg text-center"><span>Book </span></button>
                         </a>
+                        <button class="btn btn-primary btn-lg text-center" th:unless="${car.status == statusAvailable}" disabled><span>Book </span></button>
                     </div>
                 </div>
             </div>
