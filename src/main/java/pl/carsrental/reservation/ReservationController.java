@@ -11,9 +11,11 @@ import pl.carsrental.branch.BranchService;
 import pl.carsrental.cars.Car;
 import pl.carsrental.cars.CarService;
 import pl.carsrental.cars.Status;
+import pl.carsrental.client.ClientService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 @Slf4j
 @Controller
@@ -28,10 +30,30 @@ public class ReservationController {
 
     private final BranchService branchService;
 
+    private final ClientService clientService;
+
     @GetMapping(path = "/admin/reservations")
     public String getReservations(ModelMap modelMap) {
         modelMap.addAttribute("reservations", reservationService.getReservations());
         return "reservation-panel";
+    }
+
+    @GetMapping(path = "/reservations")
+    public String getPhoneNumberToReservation(ModelMap modelMap) {
+        modelMap.addAttribute("emptyPhoneNumber", null);
+        return "reservation-tel";
+    }
+
+    @PostMapping(path = "/reservation/get")
+    public String handlePhoneNumber(@RequestParam String emptyPhoneNumber) { //@ModelAttribute("emptyPhoneNumber")
+        return "redirect:/reservations/" + emptyPhoneNumber;
+    }
+
+    @GetMapping(path = "/reservations/{phoneNumber}")
+    public String getReservationsByTel(@PathVariable("phoneNumber") String phoneNumber, ModelMap modelMap) {
+        modelMap.addAttribute("reservations", reservationService.getReservationsByPhoneNumber(phoneNumber));
+        modelMap.addAttribute("phoneNumber", phoneNumber);
+        return "reservations";
     }
 
     @GetMapping(path = "/cars/{carId}/create")
@@ -66,20 +88,20 @@ public class ReservationController {
                     car.setBranch(branchEnd);
                     reservationService.addReservation(reservation);
                     log.info("Handle new Reservation: " + reservation);
-                    return "redirect:/branches";
+                    return "redirect:/reservation/thanks";
                 } else {
                     log.error("Wrong date");
-                    return "redirect:/cars";
+                    return "redirect:/error/reservation-date";
                 }
             case BORROWED:
                 log.error("Car is borrowed");
-                return "redirect:/cars";
+                return "redirect:/error/car-status";
             case UNAVAILABLE:
                 log.error("Car is currently unavailable");
-                return "redirect:/cars";
+                return "redirect:/error/car-status";
             default:
                 log.error("Wrong car status");
-                return "redirect:/cars";
+                return "redirect:/error/car-status";
         }
     }
 
@@ -88,5 +110,10 @@ public class ReservationController {
         reservationService.deleteReservation(reservationId);
         log.info("Deleted reservation with id " + reservationId);
         return "redirect:/admin/reservations";
+    }
+
+    @GetMapping(path = "/reservation/thanks")
+    public String reservationThanksTemplate() {
+        return "reservation-thanks";
     }
 }

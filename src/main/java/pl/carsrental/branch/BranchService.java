@@ -1,5 +1,6 @@
 package pl.carsrental.branch;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -12,14 +13,10 @@ import java.util.List;
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class BranchService {
 
     private final BranchRepository branchRepository;
-
-    @Autowired
-    public BranchService(BranchRepository branchRepository) {
-        this.branchRepository = branchRepository;
-    }
 
     public List<Branch> getBranches() {
         return branchRepository.findAll();

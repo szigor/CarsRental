@@ -28,6 +28,9 @@
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{/branches}">Branches</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/reservations}">Your reservations</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button"
                        data-bs-toggle="dropdown" aria-expanded="false">
@@ -60,14 +63,14 @@
                     <div class="row">
                         <div class="col-6">
                             <ul class="list">
-                                <li th:text="${car.horsePower} + ' hp'"></li>
-                                <li th:text="${car.firstRegistration}"></li>
+                                <li class="specs" th:text="${car.horsePower} + ' hp'"></li>
+                                <li class="specs" th:text="${car.firstRegistration}"></li>
                             </ul>
                         </div>
                         <div class="col-6">
                             <ul class="list">
-                                <li th:if="${car.capacity}" th:text="${car.capacity} + ' l'"></li>
-                                <li th:text="${car.fuel}"></li>
+                                <li class="specs" th:if="${car.capacity}" th:text="${car.capacity} + ' l'"></li>
+                                <li class="specs" th:text="${car.fuel}"></li>
                             </ul>
                         </div>
                     </div>

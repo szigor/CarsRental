@@ -1,13 +1,17 @@
 package pl.carsrental.reservation;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.carsrental.cars.Car;
+import pl.carsrental.client.Client;
+import pl.carsrental.client.ClientRepository;
 
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -15,17 +19,27 @@ import java.util.concurrent.TimeUnit;
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
 
-    @Autowired
-    public ReservationService(ReservationRepository reservationRepository) {
-        this.reservationRepository = reservationRepository;
-    }
+    private final ClientRepository clientRepository;
 
     public List<Reservation> getReservations() {
         return reservationRepository.findAll();
+    }
+
+    public List<Reservation> getReservationsByPhoneNumber(String phoneNumber) {
+        Integer integerPhoneNumber = Integer.valueOf(phoneNumber);
+        List<Reservation> reservationList = new ArrayList<>();
+        if(!isNumberExist(phoneNumber)) return reservationList;
+        for (Reservation reservation : reservationRepository.findAll()) {
+            if (reservation.getClient().getTel().equals(integerPhoneNumber)) {
+                reservationList.add(reservation);
+            }
+        }
+        return reservationList;
     }
 
     public void addReservation(Reservation reservation) {
@@ -66,6 +80,17 @@ public class ReservationService {
             price = price.add(extraPrice);
         }
         return price;
+    }
+
+    private boolean isNumberExist(String phoneNumber) {
+        int counter = 0;
+        Integer integerPhoneNumber = Integer.valueOf(phoneNumber);
+        for (Client client : clientRepository.findAll()) {
+            if (client.getTel().equals(integerPhoneNumber)) {
+                counter++;
+            }
+        }
+        return counter != 0;
     }
 
 }

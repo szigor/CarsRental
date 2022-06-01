@@ -1,5 +1,6 @@
 package pl.carsrental.cars;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -11,14 +12,10 @@ import java.util.List;
 @Slf4j
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class CarService {
 
     private final CarRepository carRepository;
-
-    @Autowired
-    public CarService(CarRepository carRepository) {
-        this.carRepository = carRepository;
-    }
 
     public List<Car> getCars() {
         return carRepository.findAll(Sort.by("pricePerDay").ascending());
