@@ -1,27 +1,122 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <link th:rel="stylesheet" th:href="@{/css/admin-panel.css}">
     <meta charset="UTF-8">
-    <title>Branch panel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin - branch panel</title>
     <link th:rel="icon" th:href="@{/images/icon.png}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
-<table th:align="center" class="table">
-    <thead>
-    <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Address</th>
-<!--        <th scope="col">Manager name</th>-->
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="branch : ${branches}">
-        <td th:text="${branch.id}"/>
-        <td th:text="${branch.address}"/>
-<!--        <td th:text="${branch.getManager().surname}"/>-->
-        <td><a th:text="delete" th:href="@{/admin/branch/delete/{id} / (id=${branch.id}) }"/></td>
-    </tr>
-    </tbody>
-</table>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/cars}">
+            <img class="logo" th:src="@{/images/logo.png}">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/cars}">Cars</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/branches}">Branches</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/reservations}">Your reservations</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" id="navbarDropdownMenuLink" role="button"
+                       data-bs-toggle="dropdown" aria-current="page" aria-expanded="false">
+                        Admin panel
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" th:href="@{/h2}">Database</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/reservations}">Reservations</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/employees}">Employees</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/clients}">Clients</a></li>
+                        <li><a class="dropdown-item" th:href="@{/admin/cars}">Cars</a></li>
+                        <li><a class="dropdown-item active" th:href="@{/admin/branches}">Branches</a></li>
+                        <li><a class="dropdown-item" th:href="@{/logout}">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="vh-100">
+    <div class="container py-5 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 w-100">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+
+                        <h3 class="fst-italic mb-5">Client panel</h3>
+
+                        <table class="table">
+                            <thead class="thead-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">Manager</th>
+                                <th scope="col">Cars</th>
+                                <th scope="col">Employees</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="branch : ${branches}">
+                                <td th:text="${branch.id}"/>
+                                <td th:text="${branch.address}"/>
+                                <td th:text="'-'" th:unless="${branch.manager}"/>
+                                <td th:text="${branch.manager.firstName} + ' ' + ${branch.manager.surname}"
+                                    th:if="${branch.manager}"/>
+                                <td th:text="'-'" th:unless="${branch.cars}"/>
+                                <td th:if="${branch.cars}">
+                                    <ul class="list-group list-group-flush" th:each="car : ${branch.cars}">
+                                        <li class="list-group-item" th:text="${car.make} + ' ' + ${car.model}"/>
+                                    </ul>
+                                </td>
+                                <td th:text="'-'" th:unless="${branch.employees}"/>
+                                <td th:if="${branch.employees}">
+                                    <ul class="list-group list-group-flush" th:each="emp : ${branch.employees}">
+                                        <li class="list-group-item" th:text="${emp.firstName} + ' ' + ${emp.surname}"/>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <a th:href="@{/admin/branch/delete/{id} / (id=${branch.id}) }">
+                                        <button class="btn btn-danger btn-sm">Delete</button>
+                                    </a>
+                                </td>
+<!--                                <td>-->
+<!--                                    <a th:href="@{/admin/client/edit/{id}/(id=${client.id}) }">-->
+<!--                                        <button class="btn btn-warning btn-sm">Edit</button>-->
+<!--                                    </a>-->
+<!--                                </td>-->
+                            </tr>
+                            </tbody>
+                        </table>
+<!--                        <div class="add-branch-div">-->
+<!--                            <p th:align="center">-->
+<!--                                <a th:href="@{/admin/branch/create}">-->
+<!--                                    <button class="btn btn-primary">Add new branch</button>-->
+<!--                                </a>-->
+<!--                            </p>-->
+<!--                        </div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+            integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"
+            integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy"
+            crossorigin="anonymous"></script>
 </body>
 </html>

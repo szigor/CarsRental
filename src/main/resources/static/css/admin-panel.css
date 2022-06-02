@@ -1,0 +1,28 @@
+.navbar-brand {
+    width: 120px;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 10px !important;;
+}
+
+.logo {
+    width: 120px;
+    height: 50px;
+}
+
+.nav-link {
+    font-size: larger !important;
+    margin-right: 10px;
+}
+
+section {
+    background-image: url('../images/background.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.price-car {
+    color: darkred;
+    font-weight: 500;
+}

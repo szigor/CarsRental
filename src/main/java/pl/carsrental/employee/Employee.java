@@ -31,6 +31,8 @@ public class Employee {
     @NotBlank
     private String surname;
 
+    private Integer tel;
+
 //    @NotBlank
     @Enumerated(EnumType.STRING)
     private Stand standing;
