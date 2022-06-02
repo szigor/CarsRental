@@ -11,7 +11,6 @@ import pl.carsrental.client.ClientRepository;
 import pl.carsrental.employee.Employee;
 import pl.carsrental.employee.EmployeeRepository;
 import pl.carsrental.employee.Stand;
-import pl.carsrental.reservation.ReservationRepository;
 
 import java.util.List;
 
@@ -25,7 +24,6 @@ public class InitialDataSeeder implements Runnable {
     private final EmployeeRepository employeeRepository;
     private final ClientRepository clientRepository;
     private final CarRepository carRepository;
-    private final ReservationRepository reservationRepository;
 
     @Override
     public void run() {

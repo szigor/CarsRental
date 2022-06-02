@@ -8,7 +8,6 @@ import lombok.Singular;
 import pl.carsrental.cars.Car;
 import pl.carsrental.employee.Employee;
 import pl.carsrental.employee.Stand;
-import pl.carsrental.rental.Rental;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -37,9 +36,6 @@ public class Branch {
         return employees.stream().filter(employee -> employee.getStanding() == Stand.MANAGER).findFirst().orElse(null);
     }
 
-    @ManyToOne
-    private Rental rental;
-
     @SuppressWarnings("unused") //hibernate tego potrzebuje
     protected Branch() {
     }
@@ -53,12 +49,11 @@ public class Branch {
     }
 
     @Builder
-    private Branch(Long id, @NotBlank String address, @Singular List<Employee> employees, @Singular List<Car> cars, Rental rental) {
+    private Branch(Long id, @NotBlank String address, @Singular List<Employee> employees, @Singular List<Car> cars) {
         this.id = id;
         this.address = address;
         this.employees = employees;
         this.cars = cars;
-        this.rental = rental;
         employees.forEach(employee -> {employee.setBranch(this);});
         cars.forEach(car -> {car.setBranch(this);});
     }
