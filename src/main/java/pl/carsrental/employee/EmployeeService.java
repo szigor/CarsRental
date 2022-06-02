@@ -34,11 +34,9 @@ public class EmployeeService {
         employeeRepository.deleteById(employeeId);
     }
 
-    public void employeeChangeStanding(Long employeeId) {
+    public void employeeChangeStanding(Employee employee) {
 
-        isEmployeeExists(employeeId);
-
-        Employee employee = employeeRepository.getById(employeeId);
+        isEmployeeExists(employee.getId());
         Stand employeeStanding = employee.getStanding();
 
         if (employeeStanding == Stand.MANAGER) {

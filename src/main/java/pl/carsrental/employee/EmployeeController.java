@@ -57,7 +57,8 @@ public class EmployeeController {
 
     @GetMapping(path = "/admin/employee/change/{employeeId}")
     public String changeEmployeeStanding(@PathVariable("employeeId") Long employeeId) {
-        employeeService.employeeChangeStanding(employeeId);
+        Employee employee = employeeService.getEmployeeById(employeeId);
+        employeeService.employeeChangeStanding(employee);
         return "redirect:/admin/employees";
     }
 }
