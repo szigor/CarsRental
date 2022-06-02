@@ -2,8 +2,8 @@ package pl.carsrental.reservation;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.carsrental.branch.Branch;
 import pl.carsrental.cars.Car;
 import pl.carsrental.client.Client;
 import pl.carsrental.client.ClientRepository;
@@ -74,9 +74,9 @@ public class ReservationService {
         return compareTo < 0 && compareToNow <= 0;
     }
 
-    public BigDecimal isBranchEndSameToStart(Reservation reservation, BigDecimal price) {
-        BigDecimal extraPrice = BigDecimal.valueOf(200.00);
-        if(reservation.getBranchStart() != reservation.getBranchEnd()) {
+    public BigDecimal isCarBranchSameToStartBranch(Reservation reservation, Branch carBranch, BigDecimal price) {
+        BigDecimal extraPrice = BigDecimal.valueOf(80.00);
+        if (carBranch != reservation.getBranchStart()) {
             price = price.add(extraPrice);
         }
         return price;

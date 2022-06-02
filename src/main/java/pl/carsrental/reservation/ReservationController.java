@@ -11,7 +11,6 @@ import pl.carsrental.branch.BranchService;
 import pl.carsrental.cars.Car;
 import pl.carsrental.cars.CarService;
 import pl.carsrental.cars.Status;
-import pl.carsrental.client.ClientService;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -28,8 +27,6 @@ public class ReservationController {
     private final CarService carService;
 
     private final BranchService branchService;
-
-    private final ClientService clientService;
 
     @GetMapping(path = "/admin/reservations")
     public String getReservations(ModelMap modelMap) {
@@ -60,6 +57,7 @@ public class ReservationController {
         modelMap.addAttribute("emptyReservation", new Reservation());
         modelMap.addAttribute("car", carService.getCarById(carId));
         modelMap.addAttribute("branches", branchService.getBranches());
+        modelMap.addAttribute("branchStart", null);
         modelMap.addAttribute("branchEnd", null);
         return "reservation-create";
     }
@@ -68,20 +66,20 @@ public class ReservationController {
     public String handleNewReservation(
             @ModelAttribute("emptyReservation") Reservation reservation,
             @ModelAttribute("carId") Long carId,
-            @ModelAttribute("branchEnd") Long branchId
+            @ModelAttribute("branchStart") Long startBranchId,
+            @ModelAttribute("branchEnd") Long endBranchId
     ){
         Car car = carService.getCarById(carId);
-        Branch branchEnd = branchService.getBranchById(branchId);
+        Branch carBranch = car.getBranch();
+        Branch branchEnd = branchService.getBranchById(endBranchId);
         BigDecimal price = reservationService.calcBookingPrice(reservation, car);
 
         switch (car.getStatus()) {
             case AVAILABLE:
                 if (reservationService.isDateCorrect(reservation)) {
                     reservation.setReservationDate(LocalDateTime.now());
-                    reservation.setBranchStart(car.getBranch());
                     reservation.setCarOnReservation(car);
-                    // if branch start is not equal to branch end - price += 200.00
-                    reservation.setPrice(reservationService.isBranchEndSameToStart(reservation, price));
+                    reservation.setPrice(reservationService.isCarBranchSameToStartBranch(reservation, carBranch, price));
                     car.setReservation(reservation);
                     car.setStatus(Status.BORROWED);
                     car.setBranch(branchEnd);

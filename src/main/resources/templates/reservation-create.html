@@ -94,9 +94,17 @@
                                        th:field="*{toDate}" required/>
                             </div>
                             <div class="branch-select-div mt-3">
-                                <select name="branchEnd" class="form-select branch-select" th:object="${branchEnd}"
+                                <select name="branchStart" class="form-select branch-select" th:object="${branchStart}"
                                         required>
                                     <option selected disabled value="">Select pick-up location</option>
+                                    <option th:each="branch : ${branches}" th:text="${branch.getAddress()}"
+                                            th:value="${branch.getId()}"/>
+                                </select>
+                            </div>
+                            <div class="branch-select-div mt-3">
+                                <select name="branchEnd" class="form-select branch-select" th:object="${branchEnd}"
+                                        required>
+                                    <option selected disabled value="">Select return location</option>
                                     <option th:each="branch : ${branches}" th:text="${branch.getAddress()}"
                                             th:value="${branch.getId()}"/>
                                 </select>

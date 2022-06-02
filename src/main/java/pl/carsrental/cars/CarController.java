@@ -27,6 +27,7 @@ public class CarController {
         modelMap.addAttribute("statusAvailable", Status.AVAILABLE);
         modelMap.addAttribute("statusBorrowed", Status.BORROWED);
         modelMap.addAttribute("statusUnavailable", Status.UNAVAILABLE);
+        modelMap.addAttribute("fee", carService.getCarById(carId).getOtherPickUpLocationFee());
         return "car-details";
     }
 
