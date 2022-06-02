@@ -63,6 +63,9 @@ public class Car {
     @ManyToOne
     private Branch branch;
 
+    @ManyToOne
+    private Branch previousBranch;
+
     @OneToOne(mappedBy = "carOnReservation")
 //    @OneToOne
     private Reservation reservation;

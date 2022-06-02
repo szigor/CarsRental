@@ -62,34 +62,33 @@ public class ReservationController {
         return "reservation-create";
     }
 
+    @GetMapping(path = "/admin/reservation/delete/{reservationId}")
+    public String deleteReservation(@PathVariable("reservationId") Long reservationId) {
+        reservationService.deleteReservation(reservationId);
+        log.info("Deleted reservation with id " + reservationId);
+        return "redirect:/admin/reservations";
+    }
+
+    @GetMapping(path = "/reservation/thanks")
+    public String reservationThanksTemplate() {
+        return "reservation-thanks";
+    }
+
     @PostMapping(path = "/reservation/save")
     public String handleNewReservation(
             @ModelAttribute("emptyReservation") Reservation reservation,
             @ModelAttribute("carId") Long carId,
-            @ModelAttribute("branchStart") Long startBranchId,
             @ModelAttribute("branchEnd") Long endBranchId
     ){
         Car car = carService.getCarById(carId);
-        Branch carBranch = car.getBranch();
-        Branch branchEnd = branchService.getBranchById(endBranchId);
-        BigDecimal price = reservationService.calcBookingPrice(reservation, car);
 
+        return statusValidatorRedirect(reservation, endBranchId, car);
+    }
+
+    private String statusValidatorRedirect(Reservation reservation, Long endBranchId, Car car) {
         switch (car.getStatus()) {
             case AVAILABLE:
-                if (reservationService.isDateCorrect(reservation)) {
-                    reservation.setReservationDate(LocalDateTime.now());
-                    reservation.setCarOnReservation(car);
-                    reservation.setPrice(reservationService.isCarBranchSameToStartBranch(reservation, carBranch, price));
-                    car.setReservation(reservation);
-                    car.setStatus(Status.BORROWED);
-                    car.setBranch(branchEnd);
-                    reservationService.addReservation(reservation);
-                    log.info("Handle new Reservation: " + reservation);
-                    return "redirect:/reservation/thanks";
-                } else {
-                    log.error("Wrong date");
-                    return "redirect:/error/reservation-date";
-                }
+                return dateValidatorRedirect(reservation, endBranchId, car);
             case BORROWED:
                 log.error("Car is borrowed");
                 return "redirect:/error/car-status";
@@ -102,15 +101,39 @@ public class ReservationController {
         }
     }
 
-    @GetMapping(path = "/admin/reservation/delete/{reservationId}")
-    public String deleteReservation(@PathVariable("reservationId") Long reservationId) {
-        reservationService.deleteReservation(reservationId);
-        log.info("Deleted reservation with id " + reservationId);
-        return "redirect:/admin/reservations";
+    private String dateValidatorRedirect(Reservation reservation, Long endBranchId, Car car) {
+        if (reservationService.isDateCorrect(reservation)) {
+            addReservation(reservation, endBranchId, car);
+            log.info("Handle new Reservation: " + reservation);
+            return "redirect:/reservation/thanks";
+        } else {
+            log.error("Wrong date");
+            return "redirect:/error/reservation-date";
+        }
     }
 
-    @GetMapping(path = "/reservation/thanks")
-    public String reservationThanksTemplate() {
-        return "reservation-thanks";
+    private void addReservation(Reservation reservation, Long endBranchId, Car car) {
+        Branch currentCarBranch = car.getBranch();
+        Branch branchEnd = branchService.getBranchById(endBranchId);
+        BigDecimal price = reservationService.calcBookingPrice(reservation, car);
+
+        updateReservationInfo(reservation, car, price);
+
+        updateCarInfo(reservation, car, currentCarBranch, branchEnd);
+
+        reservationService.addReservation(reservation);
+    }
+
+    private void updateReservationInfo(Reservation reservation, Car car, BigDecimal price) {
+        reservation.setReservationDate(LocalDateTime.now());
+        reservation.setCarOnReservation(car);
+        reservation.setPrice(price);
+    }
+
+    private void updateCarInfo(Reservation reservation, Car car, Branch currentCarBranch, Branch branchEnd) {
+        car.setReservation(reservation);
+        car.setStatus(Status.BORROWED);
+        car.setPreviousBranch(currentCarBranch);
+        car.setBranch(branchEnd);
     }
 }

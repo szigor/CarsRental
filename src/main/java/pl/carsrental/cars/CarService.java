@@ -2,7 +2,6 @@ package pl.carsrental.cars;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -38,12 +37,7 @@ public class CarService {
 
     public void save(Car car) {
         carRepository.save(car);
-    }
-
-    public Boolean isAvailable(Long carId) {
-        isCarExist(carId);
-        Car car = carRepository.getById(carId);
-        return car.getStatus() == Status.AVAILABLE;
+        log.info("Saved " + car);
     }
 
     private void isCarExist(Long carId) {

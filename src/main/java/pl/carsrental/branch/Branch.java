@@ -37,14 +37,6 @@ public class Branch {
         return employees.stream().filter(employee -> employee.getStanding() == Stand.MANAGER).findFirst().orElse(null);
     }
 
-//    // oddzial z ktorego auto wyruszylo
-//    @OneToMany(mappedBy = "branchStart")
-//    private List<Reservation> reservationStart;
-//
-//    // oddzial w ktorym auto zostalo oddane
-//    @OneToMany(mappedBy = "branchEnd")
-//    private List<Reservation> reservationEnd;
-
     @ManyToOne
     private Rental rental;
 

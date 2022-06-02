@@ -10,7 +10,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 import pl.carsrental.branch.Branch;
 import pl.carsrental.cars.Car;
 import pl.carsrental.client.Client;
-import pl.carsrental.hire.Hire;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -51,9 +50,6 @@ public class Reservation {
     private Branch branchEnd;
 
     private BigDecimal price;
-
-    @OneToOne
-    private Hire hire;
 
     @SuppressWarnings("unused") //hibernate tego potrzebuje
     protected Reservation() {

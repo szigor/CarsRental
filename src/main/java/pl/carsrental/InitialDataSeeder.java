@@ -11,8 +11,6 @@ import pl.carsrental.client.ClientRepository;
 import pl.carsrental.employee.Employee;
 import pl.carsrental.employee.EmployeeRepository;
 import pl.carsrental.employee.Stand;
-import pl.carsrental.rental.RentRepository;
-import pl.carsrental.rental.Rental;
 import pl.carsrental.reservation.ReservationRepository;
 
 import java.util.List;
@@ -23,7 +21,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class InitialDataSeeder implements Runnable {
 
-    private final RentRepository rentRepository;
     private final BranchRepository branchRepository;
     private final EmployeeRepository employeeRepository;
     private final ClientRepository clientRepository;
@@ -217,30 +214,5 @@ public class InitialDataSeeder implements Runnable {
                 .employee(manager3)
                 .build());
 
-
-        Rental rental1 = rentRepository.save(Rental.builder()
-                .email("wypo@gmail.com")
-                .name("Car Rental")
-                .owner("Jan nowak")
-                .webDomain("www.wypo1.com")
-                .branches(
-                        List.of(
-                                branchWwa,
-                                branchWro,
-                                branchGd
-                        )
-                )
-                .build());
-
-//        Reservation reservation1 = reservationRepository.save(Reservation.builder()
-//                .branchStart(branchGd)
-//                .branchEnd(branchWwa)
-//                .carOnReservation(car1)
-//                .client(client1)
-//                .reservationDate(LocalDateTime.now())
-//                .price(BigDecimal.valueOf(349.99))
-////                .fromDate(LocalDateTime.now().plusDays(1))
-////                .toDate(LocalDateTime.now().plusDays(6))
-//                .build());
     }
 }

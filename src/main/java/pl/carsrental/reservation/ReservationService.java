@@ -55,16 +55,6 @@ public class ReservationService {
         reservationRepository.deleteById(reservationId);
     }
 
-    public BigDecimal calcBookingPrice(Reservation reservation, Car car) {
-        Double pricePerDay = car.getPricePerDay();
-        Date fromDate = reservation.getFromDate();
-        Date toDate = reservation.getToDate();
-        long diff = toDate.getTime() - fromDate.getTime();
-        long reservationDays = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
-        double price = pricePerDay * reservationDays;
-        return BigDecimal.valueOf(price);
-    }
-
     public boolean isDateCorrect(Reservation reservation) {
         Date fromDate = reservation.getFromDate();
         Date toDate = reservation.getToDate();
@@ -74,12 +64,26 @@ public class ReservationService {
         return compareTo < 0 && compareToNow <= 0;
     }
 
-    public BigDecimal isCarBranchSameToStartBranch(Reservation reservation, Branch carBranch, BigDecimal price) {
-        BigDecimal extraPrice = BigDecimal.valueOf(80.00);
-        if (carBranch != reservation.getBranchStart()) {
-            price = price.add(extraPrice);
-        }
-        return price;
+    public BigDecimal calcBookingPrice(Reservation reservation, Car car) {
+        Double pricePerDay = car.getPricePerDay();
+        double price = pricePerDay * getReservationDays(reservation);
+        if (!isCarBranchSameToStartBranch(reservation, car.getBranch())) return extraFee(car).add(BigDecimal.valueOf(price));
+        return BigDecimal.valueOf(price);
+    }
+
+    private long getReservationDays(Reservation reservation) {
+        Date fromDate = reservation.getFromDate();
+        Date toDate = reservation.getToDate();
+        long diff = toDate.getTime() - fromDate.getTime();
+        return TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+    }
+
+    private boolean isCarBranchSameToStartBranch(Reservation reservation, Branch carBranch) {
+        return carBranch == reservation.getBranchStart();
+    }
+
+    private BigDecimal extraFee(Car car) {
+        return car.getOtherPickUpLocationFee();
     }
 
     private boolean isNumberExist(String phoneNumber) {

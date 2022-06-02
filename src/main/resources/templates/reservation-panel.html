@@ -68,7 +68,7 @@
                                 <th scope="col">Client number</th>
                                 <th scope="col">Car</th>
                                 <th scope="col">From - To</th>
-                                <!--                                <th scope="col">Car branch</th>-->
+                                <th scope="col">Car branch</th>
                                 <th scope="col">Branch start</th>
                                 <th scope="col">Branch end</th>
                             </tr>
@@ -82,7 +82,7 @@
                                 <td th:text="${reservation.client.tel}"/>
                                 <td th:text="${reservation.carOnReservation.make} + ' ' + ${reservation.carOnReservation.model}"/>
                                 <td th:text="${reservation.fromDate.toString().substring(0,10)} + ' - ' + ${reservation.toDate.toString().substring(0,10)}"/>
-                                <!--                                <td th:text="${reservation.carOnReservation.branch.address}"/>-->
+                                <td th:text="${reservation.carOnReservation.previousBranch.address}"/>
                                 <td th:text="${reservation.branchStart.address}"/>
                                 <td th:text="${reservation.branchEnd.address}"/>
                                 <td>
