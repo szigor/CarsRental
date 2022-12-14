@@ -11,7 +11,9 @@ import pl.carsrental.reservation.Reservation;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.awt.*;
 import java.math.BigDecimal;
 
 @Data
@@ -29,10 +31,10 @@ public class Car {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotEmpty
     private String make;
 
-    @NotBlank
+    @NotEmpty
     private String model;
 
     private Integer horsePower;

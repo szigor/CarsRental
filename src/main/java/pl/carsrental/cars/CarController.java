@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import pl.carsrental.branch.Branch;
+import pl.carsrental.branch.BranchService;
 
 @Slf4j
 @Controller
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 public class CarController {
 
     private final CarService carService;
+    private final BranchService branchService;
 
     @GetMapping("/cars")
     public String getCars(ModelMap modelMap) {
@@ -40,6 +43,10 @@ public class CarController {
     @GetMapping(path = "/admin/car/create")
     public String showCreateCarForm(ModelMap modelMap) {
         modelMap.addAttribute("emptyCar", new Car());
+        modelMap.addAttribute("statusValues", Status.values());
+        modelMap.addAttribute("fuelValues", Fuel.values());
+        modelMap.addAttribute("bodyTypeValues", BodyType.values());
+        modelMap.addAttribute("branches", branchService.getBranches());
         return "car-create";
     }
 
@@ -60,6 +67,10 @@ public class CarController {
     @GetMapping(path = "/admin/car/edit/{carId}")
     public String showUpdateCarForm(@PathVariable Long carId, ModelMap modelMap) {
         modelMap.addAttribute("car", carService.getCarById(carId));
+        modelMap.addAttribute("statusValues", Status.values());
+        modelMap.addAttribute("fuelValues", Fuel.values());
+        modelMap.addAttribute("bodyTypeValues", BodyType.values());
+        modelMap.addAttribute("branches", branchService.getBranches());
         return "car-edit";
     }
 

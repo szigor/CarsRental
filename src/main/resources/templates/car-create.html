@@ -45,29 +45,34 @@
 
     <label>
         Body Type:
-        <input type="text" th:field="*{bodyType}"/>
+        <select name="bodyType">
+            <option th:each="bod : ${bodyTypeValues}" th:value="${bod}" th:text="${bod.name()}"/>
+        </select>
     </label>
 
     <label>
         Fuel:
-        <input type="text" th:field="*{fuel}"/>
-    </label>
-
-    <label>
-        Colour:
-        <input type="text" th:field="*{colour}"/>
+        <select name="fuel">
+            <option th:each="fue : ${fuelValues}" th:value="${fue}" th:text="${fue.name()}"/>
+        </select>
     </label>
 
     <label>
         Status:
-        <input type="text" th:field="*{status}"/>
+        <select name="status">
+            <option th:each="statu : ${statusValues}" th:value="${statu}" th:text="${statu.name()}"/>
+        </select>
+    </label>
+
+    <label>
+        Branch:
+        <select name="branch">
+            <option th:each="bran : ${branches}" th:value="${bran.id}" th:text="${bran.getAddress()}"/>
+        </select>
     </label>
 
     <button type="submit">Add car</button>
 
 </form>
-<footer>
-    <p>© 2022 Grupa CarRental ZDJAVApol11</p>
-</footer>
 </body>
 </html>
