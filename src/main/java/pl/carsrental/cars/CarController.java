@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import pl.carsrental.branch.Branch;
 import pl.carsrental.branch.BranchService;
 
 @Slf4j
