@@ -12,3 +12,7 @@ section {
 .b2 {
     width: 30%;
 }
+
+.link-primary {
+    text-decoration: none;
+}

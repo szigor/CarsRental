@@ -17,57 +17,41 @@ import pl.carsrental.client.ClientService;
 @AllArgsConstructor
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.inMemoryAuthentication()
-//                .withUser("admin")
-//                .password("admin")
-//                .roles("ADMIN");
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.authorizeRequests()
-////                .antMatchers("/**").permitAll()
-//                .antMatchers("/h2/**").hasAnyRole("ADMIN")
-//                .antMatchers("/admin/**").hasAnyRole("ADMIN")
-//                .and()
-//                .formLogin().loginPage("/login")
-//                .defaultSuccessUrl("/admin/cars")
-//                .failureUrl("/login")
-//                .permitAll()
-//                .and()
-//                .logout()
-//                .logoutSuccessUrl("/cars")
-//                .invalidateHttpSession(true)
-//                .permitAll();
-//        http.csrf().disable();
-//        http.headers().frameOptions().disable();
-//    }
-//
-//    @Bean
-//    public PasswordEncoder getPasswordEncoder() {
-//        return NoOpPasswordEncoder.getInstance();
-//    }
+
     private final ClientService clientService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/**")
+        http.authorizeRequests()
+                .antMatchers("/h2").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN")
+                .and()
+                .formLogin().loginPage("/login")
+                .defaultSuccessUrl("/cars")
+                .failureUrl("/login")
                 .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin().loginPage("/registration");
+                .and()
+                .logout()
+                .logoutSuccessUrl("/cars")
+                .invalidateHttpSession(true)
+                .permitAll()
+                .and()
+                .exceptionHandling().accessDeniedHandler(new AccessDeniedController());
+        http.csrf().disable();
         http.headers().frameOptions().disable();
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(daoAuthenticationProvider());
+        auth.authenticationProvider(daoAuthenticationProvider()).inMemoryAuthentication()
+                .withUser("admin")
+                .password(bCryptPasswordEncoder.encode("admin"))
+                .roles("ADMIN")
+                .and()
+                .withUser("user")
+                .password(bCryptPasswordEncoder.encode("user"))
+                .roles("USER");
     }
 
     @Bean

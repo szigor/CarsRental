@@ -4,31 +4,31 @@
     <link rel="stylesheet" href="/css/login.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Email confirmed</title>
+    <title>Access denied</title>
     <link th:rel="icon" th:href="@{/images/icon.png}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
 </head>
 <body>
 <section class="vh-100">
-    <div class="container py-5 h-100">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                    <div class="card-body p-5 text-center">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
 
-                        <h2 class="mb-3">Your email has been successfully confirmed.</h2>
-                        <p class="mb-4" style="color: grey">You can now log into your account by clicking on the button below.</p>
+            <h1 class="mb-2">Sorry,</h1>
+            <h3 class="mb-5">you don't have permission to access this page.</h3>
 
-                        <a th:href="@{/login}" class="btn btn-primary btn-lg btn-block" role="button">Login</a>
+            <a th:href="@{/cars}" class="btn btn-primary btn-lg" role="button">Back to cars -></a>
 
-                        <hr class="my-4">
+            <hr class="my-4">
 
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk"
