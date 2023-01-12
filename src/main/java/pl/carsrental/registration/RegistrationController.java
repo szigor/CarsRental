@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import pl.carsrental.reservation.Reservation;
 
 @Controller
 @RequestMapping(path = "/registration")
@@ -13,7 +12,7 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping(path = "/create")
-    public String register(@ModelAttribute("request") RegistrationRequest request) {
+    public String register(@ModelAttribute("emptyRequest") RegistrationRequest request) {
         registrationService.register(request);
         return "redirect:/cars";
     }

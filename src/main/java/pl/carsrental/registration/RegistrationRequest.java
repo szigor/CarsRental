@@ -2,11 +2,9 @@ package pl.carsrental.registration;
 
 import lombok.*;
 
-@Getter
-@AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
-@ToString
+@AllArgsConstructor
+@Data
 public class RegistrationRequest {
     private String firstName;
     private String lastName;

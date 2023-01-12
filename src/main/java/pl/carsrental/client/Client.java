@@ -31,8 +31,7 @@ public class Client implements UserDetails {
 
     private String email;
 
-    @NotBlank
-    private String adress;
+    private String address;
 
     private String password;
 
