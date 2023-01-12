@@ -27,13 +27,13 @@ public class InitialDataSeeder implements Runnable {
 
     @Override
     public void run() {
-        Client client1 = clientRepository.save(Client.builder()
-                .firstName("Mariusz")
-                .surname("Kowalczyk")
-                .tel(123456789)
-                .adress("Krakow")
-                .email("m.kowalczyk@gmail.com")
-                .build());
+//        Client client1 = clientRepository.save(Client.builder()
+//                .firstName("Mariusz")
+//                .surname("Kowalczyk")
+//                .tel(123456789)
+//                .adress("Krakow")
+//                .email("m.kowalczyk@gmail.com")
+//                .build());
 
 
         Car a8 = carRepository.save(Car.builder()

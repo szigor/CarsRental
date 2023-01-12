@@ -14,7 +14,7 @@
 	<name>carsrental</name>
 	<description>Cars rental</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<repackage.classifier/>
 		<spring-native.version>0.11.4</spring-native.version>
 	</properties>
@@ -61,6 +61,21 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.simplejavamail</groupId>
+			<artifactId>simple-java-mail</artifactId>
+			<version>7.6.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>jakarta.mail</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.activation</groupId>
+			<artifactId>jakarta.activation-api</artifactId>
+			<version>2.0.1</version>
 		</dependency>
 
 		<dependency>

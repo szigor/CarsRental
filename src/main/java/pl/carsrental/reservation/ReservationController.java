@@ -52,6 +52,17 @@ public class ReservationController {
         return "reservations";
     }
 
+    @PostMapping(path = "/reservation/save")
+    public String handleNewReservation(
+            @ModelAttribute("emptyReservation") Reservation reservation,
+            @ModelAttribute("carId") Long carId,
+            @ModelAttribute("branchEnd") Long endBranchId
+    ){
+        Car car = carService.getCarById(carId);
+
+        return statusValidatorRedirect(reservation, endBranchId, car);
+    }
+
     @GetMapping(path = "/cars/{carId}/create")
     public String showCreateReservationForm(@PathVariable("carId") Long carId, ModelMap modelMap) {
         modelMap.addAttribute("emptyReservation", new Reservation());
@@ -72,17 +83,6 @@ public class ReservationController {
     @GetMapping(path = "/reservation/thanks")
     public String reservationThanksTemplate() {
         return "reservation-thanks";
-    }
-
-    @PostMapping(path = "/reservation/save")
-    public String handleNewReservation(
-            @ModelAttribute("emptyReservation") Reservation reservation,
-            @ModelAttribute("carId") Long carId,
-            @ModelAttribute("branchEnd") Long endBranchId
-    ){
-        Car car = carService.getCarById(carId);
-
-        return statusValidatorRedirect(reservation, endBranchId, car);
     }
 
     private String statusValidatorRedirect(Reservation reservation, Long endBranchId, Car car) {
